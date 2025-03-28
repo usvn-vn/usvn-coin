@@ -3,35 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>USVN Stablecoin - Giải pháp tài chính an toàn</title>
+  <title>USVN Stablecoin - Giải pháp Blockchain Công Nghệ</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Tổng thể nền tối, cảm giác công nghệ */
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
+      background-color: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
     }
+    /* Top bar thông tin giá USVN */
+    .top-info {
+      background-color: #1e1e1e;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #00d1b2;
+      letter-spacing: 0.05em;
+    }
+    /* Navigation */
     .navbar {
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background-color: #1e1e1e;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
     .navbar-brand {
       font-weight: bold;
-      color: #007bff !important;
+      color: #00d1b2 !important;
     }
     .navbar-nav .nav-link {
-      color: #007bff !important;
+      color: #e0e0e0 !important;
       font-weight: 500;
     }
+    .navbar-nav .nav-link:hover {
+      color: #00d1b2 !important;
+    }
+    /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #007bff, #00aaff);
+      background: linear-gradient(135deg, #00aaff, #005f99);
       padding: 120px 20px;
       text-align: center;
-      color: #fff;
       position: relative;
+      color: #fff;
     }
     .hero h1 {
       font-size: 3.5rem;
@@ -42,9 +58,9 @@
       margin: 20px 0;
     }
     .btn-custom {
-      background-color: #fff;
+      background-color: #00d1b2;
       border: none;
-      color: #007bff;
+      color: #121212;
       padding: 12px 30px;
       font-size: 1.1rem;
       border-radius: 5px;
@@ -52,10 +68,11 @@
       transition: background-color 0.3s ease;
     }
     .btn-custom:hover {
-      background-color: #e0e0e0;
+      background-color: #00b89c;
     }
+    /* Countdown Timer */
     .countdown-section {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(0, 0, 0, 0.3);
       padding: 30px 20px;
       border-radius: 10px;
       display: inline-block;
@@ -69,18 +86,20 @@
       margin-top: 20px;
     }
     .countdown div {
-      background: rgba(255,255,255,0.7);
+      background: rgba(0,0,0,0.5);
       padding: 15px;
       border-radius: 5px;
       min-width: 80px;
-      color: #007bff;
+      color: #00d1b2;
     }
-    /* Các section khác */
+    /* Section Titles */
     .section-title {
       text-align: center;
       margin-bottom: 40px;
-      color: #007bff;
+      color: #00d1b2;
+      font-size: 2rem;
     }
+    /* Các Section */
     .features, .tokenomics, .roadmap, .about, .news {
       padding: 60px 20px;
     }
@@ -93,24 +112,39 @@
     .roadmap .step i, 
     .news .article i {
       font-size: 3rem;
-      color: #007bff;
+      color: #00d1b2;
       margin-bottom: 15px;
     }
+    .about p {
+      font-size: 1.1rem;
+    }
     .footer {
-      background-color: #007bff;
+      background-color: #1e1e1e;
       padding: 20px 0;
       text-align: center;
-      color: #fff;
+      color: #777;
+      font-size: 0.9rem;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1rem; }
+      .countdown { flex-direction: column; }
     }
   </style>
 </head>
 <body>
+  <!-- Top info bar -->
+  <div class="top-info">
+    1 USVN = 1 USD
+  </div>
+  
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand" href="#">USVN</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon" style="color:#007bff;"></span>
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
@@ -130,10 +164,10 @@
   <header class="hero">
     <div class="container">
       <h1>USVN Stablecoin</h1>
-      <p>Giải pháp tài chính an toàn và minh bạch trên Blockchain Bitcoin</p>
+      <p>Giải pháp blockchain công nghệ tiên tiến với giao dịch an toàn và minh bạch</p>
       <a href="#features" class="btn btn-custom">Khám phá ngay</a>
       <!-- Countdown Timer -->
-      <div class="countdown-section">
+      <div class="countdown-section mt-5">
         <h2>Đếm ngược đến ngày mở</h2>
         <div id="countdown" class="countdown">
           <div><span id="days">0</span><br>Ngày</div>
@@ -152,82 +186,82 @@
       <div class="row">
         <div class="col-md-4 feature">
           <i class="fas fa-shield-alt"></i>
-          <h3>Bảo mật</h3>
-          <p>Công nghệ blockchain tiên tiến đảm bảo an toàn tuyệt đối cho các giao dịch.</p>
+          <h3>Bảo mật cao</h3>
+          <p>Công nghệ blockchain tiên tiến bảo vệ thông tin giao dịch của bạn.</p>
         </div>
         <div class="col-md-4 feature">
           <i class="fas fa-bolt"></i>
-          <h3>Nhanh chóng</h3>
-          <p>Giao dịch tức thì với tốc độ cao và phí giao dịch tối ưu.</p>
+          <h3>Giao dịch tức thì</h3>
+          <p>Xử lý giao dịch nhanh chóng với độ trễ cực thấp và phí tối ưu.</p>
         </div>
         <div class="col-md-4 feature">
           <i class="fas fa-eye"></i>
           <h3>Minh bạch</h3>
-          <p>Mọi giao dịch đều được kiểm chứng công khai trên blockchain.</p>
+          <p>Mọi giao dịch đều được ghi lại và kiểm chứng trên blockchain công khai.</p>
         </div>
       </div>
     </div>
   </section>
   
   <!-- Tokenomics Section -->
-  <section id="tokenomics" class="tokenomics bg-light">
+  <section id="tokenomics" class="tokenomics">
     <div class="container">
       <h2 class="section-title">Tokenomics</h2>
       <div class="row">
         <div class="col-md-6 token">
           <i class="fas fa-chart-pie"></i>
-          <h3>Phân bổ</h3>
-          <p>Thông tin chi tiết về phân bổ USVN bao gồm dự trữ, phát hành và lưu thông.</p>
+          <h3>Phân bổ thông minh</h3>
+          <p>Thông tin chi tiết về phân bổ nguồn cung USVN, lưu thông và dự trữ đảm bảo ổn định.</p>
         </div>
         <div class="col-md-6 token">
           <i class="fas fa-balance-scale"></i>
           <h3>Cơ chế ổn định</h3>
-          <p>Hệ thống ổn định giá được đảm bảo bởi công nghệ blockchain Bitcoin.</p>
+          <p>Hệ thống ổn định giá tự động đảm bảo 1 USVN luôn tương đương 1 USD.</p>
         </div>
       </div>
     </div>
   </section>
   
   <!-- Roadmap Section -->
-  <section id="roadmap" class="roadmap">
+  <section id="roadmap" class="roadmap bg-dark">
     <div class="container">
-      <h2 class="section-title">Lộ Trình Phát Triển</h2>
+      <h2 class="section-title" style="color:#00d1b2;">Lộ Trình Phát Triển</h2>
       <div class="row">
         <div class="col-md-3 step">
           <i class="fas fa-flag-checkered"></i>
           <h4>Giai đoạn 1</h4>
-          <p>Khởi động dự án và phát triển hợp đồng thông minh ban đầu.</p>
+          <p>Khởi động dự án, hoàn thiện hợp đồng thông minh và hệ thống cơ bản.</p>
         </div>
         <div class="col-md-3 step">
           <i class="fas fa-rocket"></i>
           <h4>Giai đoạn 2</h4>
-          <p>Ra mắt beta, tích hợp ví điện tử và mở rộng đối tác.</p>
+          <p>Ra mắt beta, tích hợp ví điện tử và mở rộng đối tác chiến lược.</p>
         </div>
         <div class="col-md-3 step">
           <i class="fas fa-chart-line"></i>
           <h4>Giai đoạn 3</h4>
-          <p>Phát triển hệ sinh thái, tăng cường thanh khoản và triển khai các ứng dụng tài chính.</p>
+          <p>Phát triển hệ sinh thái, tăng cường thanh khoản và triển khai ứng dụng tài chính.</p>
         </div>
         <div class="col-md-3 step">
           <i class="fas fa-trophy"></i>
           <h4>Giai đoạn 4</h4>
-          <p>Ra mắt chính thức, quảng bá thương hiệu và phát triển cộng đồng.</p>
+          <p>Ra mắt chính thức, quảng bá thương hiệu toàn cầu và xây dựng cộng đồng mạnh mẽ.</p>
         </div>
       </div>
     </div>
   </section>
   
   <!-- About Section -->
-  <section id="about" class="about bg-light">
+  <section id="about" class="about">
     <div class="container">
       <h2 class="section-title">Về USVN</h2>
       <div class="row align-items-center">
         <div class="col-md-6">
           <p>
-            USVN Stablecoin là giải pháp tài chính tiên tiến được xây dựng trên nền tảng blockchain Bitcoin, cung cấp môi trường giao dịch an toàn, nhanh chóng và minh bạch. Chúng tôi cam kết đem lại giá trị bền vững và sự tin cậy tối đa cho cộng đồng.
+            USVN Stablecoin là giải pháp tài chính tiên tiến, được xây dựng trên nền tảng blockchain của Bitcoin. Với cam kết bảo mật và minh bạch, USVN mang đến môi trường giao dịch số ổn định, an toàn và công nghệ hiện đại.
           </p>
           <p>
-            Với công nghệ bảo mật hàng đầu và hệ thống ổn định giá thông minh, USVN hứa hẹn trở thành lựa chọn hàng đầu cho các nhà đầu tư và người dùng trong lĩnh vực tài chính kỹ thuật số.
+            Hệ thống của chúng tôi sử dụng các thuật toán tiên tiến để duy trì tỷ giá ổn định, giúp 1 USVN luôn tương đương 1 USD. Đây chính là giải pháp lý tưởng cho các giao dịch kỹ thuật số và đầu tư dài hạn.
           </p>
         </div>
         <div class="col-md-6">
@@ -238,24 +272,24 @@
   </section>
   
   <!-- News Section -->
-  <section id="news" class="news">
+  <section id="news" class="news bg-dark">
     <div class="container">
-      <h2 class="section-title">Tin Tức & Cập Nhật</h2>
+      <h2 class="section-title" style="color:#00d1b2;">Tin Tức & Cập Nhật</h2>
       <div class="row">
         <div class="col-md-4 article">
           <i class="fas fa-newspaper"></i>
           <h4>Bản tin 1</h4>
-          <p>Cập nhật những thông tin mới nhất về USVN và thị trường tài chính kỹ thuật số.</p>
+          <p>Cập nhật thông tin mới nhất về USVN và xu hướng thị trường blockchain.</p>
         </div>
         <div class="col-md-4 article">
           <i class="fas fa-newspaper"></i>
           <h4>Bản tin 2</h4>
-          <p>Thông tin về các sự kiện, hội nghị và các hoạt động từ cộng đồng USVN.</p>
+          <p>Thông tin về các sự kiện, hội nghị và quan hệ đối tác chiến lược của USVN.</p>
         </div>
         <div class="col-md-4 article">
           <i class="fas fa-newspaper"></i>
           <h4>Bản tin 3</h4>
-          <p>Nhận định thị trường và phân tích chuyên sâu từ các chuyên gia tài chính.</p>
+          <p>Nhận định thị trường và phân tích chuyên sâu từ các chuyên gia blockchain hàng đầu.</p>
         </div>
       </div>
     </div>
