@@ -1,98 +1,240 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USVN Stablecoin - Giải pháp tài chính an toàn</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .hero {
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-        }
-        .hero h1 {
-            font-size: 48px;
-            font-weight: bold;
-        }
-        .hero p {
-            font-size: 20px;
-            margin-top: 10px;
-        }
-        .btn-custom {
-            background-color: #28a745;
-            border: none;
-            color: white;
-            padding: 15px 30px;
-            font-size: 18px;
-            border-radius: 5px;
-            text-transform: uppercase;
-        }
-        .btn-custom:hover {
-            background-color: #218838;
-        }
-        .features {
-            padding: 60px 20px;
-            text-align: center;
-        }
-        .features i {
-            font-size: 50px;
-            color: #28a745;
-            margin-bottom: 20px;
-        }
-        .footer {
-            background-color: #0f2027;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 50px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>USVN Stablecoin - Giải pháp tài chính an toàn</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #111;
+      color: #fff;
+    }
+    .navbar {
+      background-color: #222;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      padding: 120px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #f39c12;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin: 20px 0;
+    }
+    .btn-custom {
+      background-color: #f39c12;
+      border: none;
+      color: #111;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border-radius: 5px;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+    }
+    .btn-custom:hover {
+      background-color: #d35400;
+    }
+    .features {
+      padding: 80px 20px;
+      background-color: #1f1f1f;
+    }
+    .features .feature {
+      padding: 20px;
+    }
+    .features .feature i {
+      font-size: 3rem;
+      color: #f39c12;
+      margin-bottom: 15px;
+    }
+    .features .feature h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    .countdown-section {
+      background-color: #222;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+    .countdown div {
+      background: #333;
+      padding: 20px;
+      border-radius: 5px;
+      min-width: 100px;
+    }
+    .footer {
+      background-color: #222;
+      padding: 20px 0;
+      text-align: center;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1rem; }
+      .countdown { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>USVN Stablecoin</h1>
-            <p>Giải pháp tài chính an toàn & minh bạch trên Blockchain Bitcoin</p>
-            <a href="#" class="btn btn-custom">Tìm hiểu ngay</a>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">USVN</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Trang chủ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Tính năng</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Về chúng tôi</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Hero Section with Countdown -->
+  <header class="hero">
+    <div class="container">
+      <h1>USVN Stablecoin</h1>
+      <p>Giải pháp tài chính an toàn và minh bạch trên Blockchain Bitcoin</p>
+      <a href="#features" class="btn btn-custom">Khám phá ngay</a>
+      <!-- Countdown Timer -->
+      <div class="countdown-section mt-5">
+        <h2>Đếm ngược đến ngày mở</h2>
+        <div id="countdown" class="countdown">
+          <div><span id="days">0</span><br>Ngày</div>
+          <div><span id="hours">0</span><br>Giờ</div>
+          <div><span id="minutes">0</span><br>Phút</div>
+          <div><span id="seconds">0</span><br>Giây</div>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Bảo mật cao</h3>
-                    <p>Ứng dụng công nghệ blockchain giúp giao dịch an toàn tuyệt đối.</p>
-                </div>
-                <div class="col-md-4">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Giao dịch tức thì</h3>
-                    <p>Chuyển đổi nhanh chóng với phí giao dịch thấp.</p>
-                </div>
-                <div class="col-md-4">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Minh bạch 100%</h3>
-                    <p>Mọi giao dịch đều có thể kiểm tra trên blockchain.</p>
-                </div>
-            </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4 feature">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Bảo mật</h3>
+          <p>An toàn tuyệt đối với công nghệ blockchain tiên tiến.</p>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2025 USVN Stablecoin. All Rights Reserved.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <div class="col-md-4 feature">
+          <i class="fas fa-bolt"></i>
+          <h3>Nhanh chóng</h3>
+          <p>Giao dịch tức thì với tốc độ vượt trội và phí thấp.</p>
+        </div>
+        <div class="col-md-4 feature">
+          <i class="fas fa-check-circle"></i>
+          <h3>Minh bạch</h3>
+          <p>Mọi giao dịch được công khai kiểm chứng trên blockchain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section id="about" class="container my-5">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h2>Về USVN</h2>
+        <p>
+          USVN Stablecoin là giải pháp tài chính được xây dựng trên nền tảng blockchain Bitcoin,
+          cung cấp môi trường giao dịch an toàn, nhanh chóng và minh bạch. Chúng tôi cam kết đem lại
+          giá trị và sự tin cậy tối đa cho cộng đồng.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <img src="https://via.placeholder.com/500x300" alt="USVN Stablecoin" class="img-fluid rounded">
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="container my-5">
+    <h2 class="text-center mb-4">Liên hệ</h2>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Họ tên</label>
+            <input type="text" class="form-control" id="name" placeholder="Nhập tên của bạn">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn">
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Nội dung</label>
+            <textarea class="form-control" id="message" rows="4" placeholder="Viết tin nhắn của bạn"></textarea>
+          </div>
+          <button type="submit" class="btn btn-custom">Gửi</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 USVN. All Rights Reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Countdown Timer Script -->
+  <script>
+    // Ngày mở: 05-05-2025 (Ngày/Tháng/Năm)
+    const openDate = new Date("May 05, 2025 00:00:00").getTime();
+    
+    const countdownFunction = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = openDate - now;
+      
+      // Tính số ngày, giờ, phút, giây
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      // Hiển thị kết quả lên các phần tử
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+      
+      // Nếu đếm ngược kết thúc, dừng bộ đếm
+      if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown").innerHTML = "<div>Đã mở</div>";
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
