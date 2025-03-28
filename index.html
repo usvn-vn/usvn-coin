@@ -9,55 +9,65 @@
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Body style với nền trắng và chữ đen nhẹ */
+    /* Tổng thể giao diện Dark mode theo phong cách USDT */
     body {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background-color: #fff;
-      color: #333;
+      background-color: #0d0d0d;
+      color: #e6e6e6;
       line-height: 1.6;
+    }
+    a {
+      color: #f2c94c; /* vàng cam như USDT */
+    }
+    a:hover {
+      color: #d4af37;
     }
     /* Navigation */
     .navbar {
-      background-color: #fff;
-      border-bottom: 1px solid #eaeaea;
+      background-color: #121212;
+      border-bottom: 1px solid #333;
     }
     .navbar-brand {
       font-weight: bold;
-      color: #0052ff !important;
+      color: #f2c94c !important;
+      font-size: 1.8rem;
     }
     .navbar-nav .nav-link {
-      color: #0052ff !important;
+      color: #e6e6e6 !important;
       font-weight: 500;
+      margin: 0 0.5rem;
     }
     .navbar-nav .nav-link:hover {
-      color: #003bb5 !important;
+      color: #f2c94c !important;
     }
     /* Hero Section */
     .hero {
-      background: linear-gradient(135deg, #e6f0ff, #cce0ff);
-      padding: 100px 20px;
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      padding: 120px 20px;
       text-align: center;
+      position: relative;
     }
     .hero h1 {
       font-size: 3.5rem;
       font-weight: 700;
-      color: #0052ff;
+      color: #f2c94c;
     }
     .hero p {
-      font-size: 1.5rem;
-      margin: 20px 0;
-      color: #333;
+      font-size: 1.4rem;
+      margin: 20px auto;
+      max-width: 700px;
+      color: #ccc;
     }
     .hero .price-info {
       font-size: 2rem;
       font-weight: bold;
-      color: #0052ff;
+      color: #f2c94c;
       margin-bottom: 30px;
     }
     .btn-custom {
-      background-color: #0052ff;
+      background-color: #f2c94c;
       border: none;
-      color: #fff;
+      color: #121212;
       padding: 12px 30px;
       font-size: 1.1rem;
       border-radius: 5px;
@@ -65,77 +75,58 @@
       transition: background-color 0.3s ease;
     }
     .btn-custom:hover {
-      background-color: #003bb5;
-    }
-    /* Countdown Timer */
-    .countdown-section {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 30px 20px;
-      border-radius: 10px;
-      display: inline-block;
-      margin-top: 30px;
-    }
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      font-size: 1.5rem;
-      margin-top: 20px;
-    }
-    .countdown div {
-      background: rgba(0,0,0,0.05);
-      padding: 15px;
-      border-radius: 5px;
-      min-width: 80px;
-      color: #0052ff;
+      background-color: #d4af37;
     }
     /* Section Titles */
     .section-title {
       text-align: center;
       margin-bottom: 40px;
-      color: #0052ff;
+      color: #f2c94c;
       font-size: 2rem;
       font-weight: 600;
     }
-    /* Các Section */
-    .features, .tokenomics, .roadmap, .about, .news, .contact, .installation {
+    /* Các Section chung */
+    section {
       padding: 60px 20px;
     }
-    .features .feature, .tokenomics .token, .roadmap .step, .news .article, .installation .info-block {
+    .section-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    /* Ví dụ cho Features */
+    .features .feature {
       text-align: center;
       padding: 20px;
     }
-    .features .feature i, 
-    .tokenomics .token i, 
-    .roadmap .step i, 
-    .news .article i,
-    .installation .info-block i {
+    .features .feature i {
       font-size: 3rem;
-      color: #0052ff;
+      color: #f2c94c;
       margin-bottom: 15px;
     }
-    .about p {
-      font-size: 1.1rem;
-    }
-    /* Installation Section */
-    .installation ul {
-      text-align: left;
-      max-width: 800px;
-      margin: 0 auto;
-      padding-left: 20px;
-    }
-    .installation li {
+    .features .feature h3 {
+      font-size: 1.6rem;
       margin-bottom: 10px;
-      font-size: 1.1rem;
+    }
+    .features .feature p {
+      color: #ccc;
     }
     /* Footer */
     .footer {
-      background-color: #f8f8f8;
+      background-color: #121212;
       padding: 20px 0;
       text-align: center;
       color: #777;
       font-size: 0.9rem;
-      border-top: 1px solid #eaeaea;
+      border-top: 1px solid #333;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .hero p {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
@@ -147,15 +138,13 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link active" href="#">Trang chủ</a></li>
           <li class="nav-item"><a class="nav-link" href="#features">Tính năng</a></li>
           <li class="nav-item"><a class="nav-link" href="#tokenomics">Tokenomics</a></li>
           <li class="nav-item"><a class="nav-link" href="#roadmap">Lộ trình</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">Về chúng tôi</a></li>
-          <li class="nav-item"><a class="nav-link" href="#news">Tin tức</a></li>
-          <li class="nav-item"><a class="nav-link" href="#installation">Hướng dẫn</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
         </ul>
       </div>
@@ -169,71 +158,18 @@
       <h1>USVN StapleCoin</h1>
       <p>Stablecoin được thiết kế để duy trì giá trị ổn định, minh bạch và tin cậy trên nền tảng blockchain.</p>
       <a href="#features" class="btn btn-custom">Khám phá ngay</a>
-      <!-- Countdown Timer -->
-      <div class="countdown-section mt-5">
-        <h2>Đếm ngược đến ngày mở</h2>
-        <div id="countdown" class="countdown">
-          <div><span id="days">0</span><br>Ngày</div>
-          <div><span id="hours">0</span><br>Giờ</div>
-          <div><span id="minutes">0</span><br>Phút</div>
-          <div><span id="seconds">0</span><br>Giây</div>
-        </div>
-      </div>
     </div>
   </header>
   
-  <!-- New Installation & Earning Section -->
-  <section id="installation" class="installation">
-    <div class="container">
-      <h2 class="section-title">Hướng Dẫn Cài Đặt & Kiếm USN</h2>
-      <div class="info-block">
-        <i class="fas fa-cogs"></i>
-        <h3>Cài Đặt Node</h3>
-        <ul>
-          <li>Tải và cài đặt <strong>Node.js</strong> từ <a href="https://nodejs.org" target="_blank">nodejs.org</a>.</li>
-          <li>Mở terminal và kiểm tra phiên bản bằng lệnh: <code>node -v</code>.</li>
-          <li>Cài đặt các package cần thiết cho dự án blockchain của bạn (ví dụ: <code>npm install</code>).</li>
-        </ul>
-      </div>
-      <div class="info-block">
-        <i class="fas fa-wallet"></i>
-        <h3>Cài Đặt Ví</h3>
-        <ul>
-          <li>Tải ví tương thích với blockchain của dự án (ví dụ: <strong>MetaMask</strong> hoặc ví chuyên dụng).</li>
-          <li>Cài đặt và tạo ví mới, lưu trữ khóa bảo mật an toàn.</li>
-          <li>Kết nối ví với mạng thử nghiệm (testnet) hoặc mainnet theo hướng dẫn của dự án.</li>
-        </ul>
-      </div>
-      <div class="info-block">
-        <i class="fas fa-tools"></i>
-        <h3>Kiểm Tra Hệ Thống Hoạt Động</h3>
-        <ul>
-          <li>Chạy node cài đặt để đảm bảo rằng hệ thống blockchain của bạn đang hoạt động.</li>
-          <li>Dùng các công cụ giám sát và log để theo dõi giao dịch và trạng thái của node.</li>
-          <li>Thực hiện các giao dịch thử nghiệm để kiểm tra tính ổn định của hệ thống.</li>
-        </ul>
-      </div>
-      <div class="info-block">
-        <i class="fas fa-lightbulb"></i>
-        <h3>Hướng Dẫn Cài Đặt & Cách Kiếm USN</h3>
-        <ul>
-          <li>Đọc tài liệu hướng dẫn cài đặt chi tiết được cung cấp trên website của dự án.</li>
-          <li>Tham gia cộng đồng USVN để nhận thông báo về chương trình thưởng và staking.</li>
-          <li>Kiếm USN qua các hoạt động: staking, referral và tham gia các sự kiện, chương trình khuyến mãi.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  
   <!-- Features Section -->
-  <section id="features" class="features">
-    <div class="container">
+  <section id="features">
+    <div class="container section-content">
       <h2 class="section-title">Tính Năng Nổi Bật</h2>
       <div class="row">
         <div class="col-md-4 feature">
           <i class="fas fa-shield-alt"></i>
           <h3>Bảo mật cao</h3>
-          <p>Công nghệ blockchain đảm bảo an toàn tuyệt đối cho mọi giao dịch.</p>
+          <p>Công nghệ blockchain tiên tiến bảo vệ mọi giao dịch của bạn.</p>
         </div>
         <div class="col-md-4 feature">
           <i class="fas fa-bolt"></i>
@@ -243,71 +179,71 @@
         <div class="col-md-4 feature">
           <i class="fas fa-eye"></i>
           <h3>Minh bạch</h3>
-          <p>Mọi giao dịch đều được ghi lại và kiểm chứng trên blockchain công khai.</p>
+          <p>Mọi giao dịch được ghi lại và kiểm chứng trên blockchain công khai.</p>
         </div>
       </div>
     </div>
   </section>
   
   <!-- Tokenomics Section -->
-  <section id="tokenomics" class="tokenomics bg-light">
-    <div class="container">
+  <section id="tokenomics" style="background-color:#181818;">
+    <div class="container section-content">
       <h2 class="section-title">Tokenomics</h2>
       <div class="row">
-        <div class="col-md-6 token">
+        <div class="col-md-6 text-center">
           <i class="fas fa-chart-pie"></i>
           <h3>Phân bổ nguồn cung</h3>
-          <p>Thông tin chi tiết về cách phân bổ USVN, từ phát hành đến lưu thông trên thị trường.</p>
+          <p>Thông tin chi tiết về cách phân bổ USVN từ phát hành đến lưu thông.</p>
         </div>
-        <div class="col-md-6 token">
+        <div class="col-md-6 text-center">
           <i class="fas fa-balance-scale"></i>
           <h3>Cơ chế ổn định giá</h3>
-          <p>Đảm bảo rằng 1 USVN luôn được neo giá với 1 USD, mang lại sự ổn định tuyệt đối.</p>
+          <p>Đảm bảo 1 USVN luôn được neo giá với 1 USD, mang lại sự ổn định tối đa.</p>
         </div>
       </div>
     </div>
   </section>
   
   <!-- Roadmap Section -->
-  <section id="roadmap" class="roadmap">
-    <div class="container">
+  <section id="roadmap">
+    <div class="container section-content">
       <h2 class="section-title">Lộ Trình Phát Triển</h2>
-      <div class="row">
-        <div class="col-md-3 step">
+      <div class="row text-center">
+        <div class="col-md-3">
           <i class="fas fa-flag-checkered"></i>
           <h4>Giai đoạn 1</h4>
-          <p>Hoàn thiện hợp đồng thông minh và xây dựng hạ tầng cơ bản.</p>
+          <p>Hoàn thiện hợp đồng thông minh và xây dựng nền tảng cơ bản.</p>
         </div>
-        <div class="col-md-3 step">
+        <div class="col-md-3">
           <i class="fas fa-rocket"></i>
           <h4>Giai đoạn 2</h4>
-          <p>Ra mắt beta, tích hợp ví điện tử và hợp tác với các đối tác chiến lược.</p>
+          <p>Ra mắt beta, tích hợp ví và hợp tác với đối tác chiến lược.</p>
         </div>
-        <div class="col-md-3 step">
+        <div class="col-md-3">
           <i class="fas fa-chart-line"></i>
           <h4>Giai đoạn 3</h4>
-          <p>Mở rộng hệ sinh thái, tăng cường thanh khoản và phát triển ứng dụng tài chính.</p>
+          <p>Mở rộng hệ sinh thái, tăng cường thanh khoản và ứng dụng tài chính.</p>
         </div>
-        <div class="col-md-3 step">
+        <div class="col-md-3">
           <i class="fas fa-trophy"></i>
           <h4>Giai đoạn 4</h4>
-          <p>Ra mắt chính thức, quảng bá thương hiệu và xây dựng cộng đồng toàn cầu.</p>
+          <p>Ra mắt chính thức, quảng bá thương hiệu và phát triển cộng đồng toàn cầu.</p>
         </div>
       </div>
     </div>
   </section>
   
   <!-- About Section -->
-  <section id="about" class="about bg-light">
-    <div class="container">
+  <section id="about" style="background-color:#181818;">
+    <div class="container section-content">
       <h2 class="section-title">Về Chúng Tôi</h2>
       <div class="row align-items-center">
         <div class="col-md-6">
           <p>
-            USVN StapleCoin là stablecoin tiên tiến được phát triển trên nền tảng blockchain, đảm bảo tính ổn định và minh bạch. Chúng tôi cam kết duy trì giá trị của USVN bằng cách neo trực tiếp 1 USVN = 1 USD, mang đến sự an tâm cho nhà đầu tư và người dùng.
+            USVN StapleCoin là stablecoin tiên tiến được phát triển trên nền tảng blockchain, cam kết duy trì giá trị ổn định với tỉ lệ neo 1 USVN = 1 USD. Chúng tôi hướng đến sự minh bạch, bảo mật và tin cậy tối đa cho nhà đầu tư và người dùng.
           </p>
           <p>
-            Với công nghệ bảo mật hàng đầu, hệ thống của chúng tôi luôn kiểm soát và giám sát mọi giao dịch, đảm bảo sự tin cậy và minh bạch tối đa.
+            Với công nghệ bảo mật hàng đầu, hệ thống của chúng tôi luôn giám sát mọi giao dịch, đảm bảo tính toàn vẹn và minh bạch của toàn bộ hệ sinh thái.
           </p>
         </div>
         <div class="col-md-6">
@@ -317,36 +253,12 @@
     </div>
   </section>
   
-  <!-- News Section -->
-  <section id="news" class="news">
-    <div class="container">
-      <h2 class="section-title">Tin Tức & Cập Nhật</h2>
-      <div class="row">
-        <div class="col-md-4 article">
-          <i class="fas fa-newspaper"></i>
-          <h4>Bản tin 1</h4>
-          <p>Cập nhật những thông tin mới nhất về USVN StapleCoin và xu hướng thị trường stablecoin.</p>
-        </div>
-        <div class="col-md-4 article">
-          <i class="fas fa-newspaper"></i>
-          <h4>Bản tin 2</h4>
-          <p>Thông tin chi tiết về các sự kiện, hội nghị và hợp tác chiến lược.</p>
-        </div>
-        <div class="col-md-4 article">
-          <i class="fas fa-newspaper"></i>
-          <h4>Bản tin 3</h4>
-          <p>Phân tích chuyên sâu từ các chuyên gia tài chính và blockchain hàng đầu.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
   <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2 class="section-title">Liên hệ</h2>
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
+  <section id="contact" style="background-color:#0d0d0d;">
+    <div class="container section-content">
+      <h2 class="section-title">Liên Hệ</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
           <form>
             <div class="mb-3">
               <label for="name" class="form-label">Họ tên</label>
@@ -360,7 +272,7 @@
               <label for="message" class="form-label">Nội dung</label>
               <textarea class="form-control" id="message" rows="4" placeholder="Viết tin nhắn của bạn"></textarea>
             </div>
-            <button type="submit" class="btn btn-custom">Gửi</button>
+            <button type="submit" class="btn btn-custom w-100">Gửi</button>
           </form>
         </div>
       </div>
@@ -376,34 +288,5 @@
   
   <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Countdown Timer Script -->
-  <script>
-    // Ngày mở: 05-05-2025 (Ngày/Tháng/Năm)
-    const openDate = new Date("May 05, 2025 00:00:00").getTime();
-    
-    const countdownFunction = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = openDate - now;
-      
-      // Tính số ngày, giờ, phút, giây
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-      // Hiển thị kết quả lên các phần tử
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
-      
-      // Nếu đếm ngược kết thúc, dừng bộ đếm
-      if (distance < 0) {
-        clearInterval(countdownFunction);
-        document.getElementById("countdown").innerHTML = "<div>Đã mở</div>";
-      }
-    }, 1000);
-  </script>
 </body>
 </html>
