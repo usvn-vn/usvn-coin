@@ -11,35 +11,40 @@
   <style>
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #111;
-      color: #fff;
+      background-color: #f8f9fa;
+      color: #333;
     }
     .navbar {
-      background-color: #222;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .navbar-brand {
       font-weight: bold;
-      font-size: 1.5rem;
+      color: #007bff !important;
+    }
+    .navbar-nav .nav-link {
+      color: #007bff !important;
+      font-weight: 500;
     }
     .hero {
-      background: linear-gradient(135deg, #1a1a1a, #333);
+      background: linear-gradient(135deg, #007bff, #00aaff);
       padding: 120px 20px;
       text-align: center;
+      color: #fff;
       position: relative;
     }
     .hero h1 {
       font-size: 3.5rem;
       font-weight: 700;
-      color: #f39c12;
     }
     .hero p {
       font-size: 1.25rem;
       margin: 20px 0;
     }
     .btn-custom {
-      background-color: #f39c12;
+      background-color: #fff;
       border: none;
-      color: #111;
+      color: #007bff;
       padding: 12px 30px;
       font-size: 1.1rem;
       border-radius: 5px;
@@ -47,68 +52,74 @@
       transition: background-color 0.3s ease;
     }
     .btn-custom:hover {
-      background-color: #d35400;
-    }
-    .features {
-      padding: 80px 20px;
-      background-color: #1f1f1f;
-    }
-    .features .feature {
-      padding: 20px;
-    }
-    .features .feature i {
-      font-size: 3rem;
-      color: #f39c12;
-      margin-bottom: 15px;
-    }
-    .features .feature h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
+      background-color: #e0e0e0;
     }
     .countdown-section {
-      background-color: #222;
-      padding: 50px 20px;
-      text-align: center;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 30px 20px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-top: 30px;
     }
     .countdown {
       display: flex;
       justify-content: center;
       gap: 20px;
-      font-size: 2rem;
+      font-size: 1.5rem;
       margin-top: 20px;
     }
     .countdown div {
-      background: #333;
-      padding: 20px;
+      background: rgba(255,255,255,0.7);
+      padding: 15px;
       border-radius: 5px;
-      min-width: 100px;
+      min-width: 80px;
+      color: #007bff;
+    }
+    /* Các section khác */
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #007bff;
+    }
+    .features, .tokenomics, .roadmap, .about, .news {
+      padding: 60px 20px;
+    }
+    .features .feature, .tokenomics .token, .roadmap .step, .news .article {
+      text-align: center;
+      padding: 20px;
+    }
+    .features .feature i, 
+    .tokenomics .token i, 
+    .roadmap .step i, 
+    .news .article i {
+      font-size: 3rem;
+      color: #007bff;
+      margin-bottom: 15px;
     }
     .footer {
-      background-color: #222;
+      background-color: #007bff;
       padding: 20px 0;
       text-align: center;
-    }
-    /* Responsive adjustments */
-    @media (max-width: 576px) {
-      .hero h1 { font-size: 2.5rem; }
-      .hero p { font-size: 1rem; }
-      .countdown { flex-direction: column; }
+      color: #fff;
     }
   </style>
 </head>
 <body>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand" href="#">USVN</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" style="color:#007bff;"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link active" href="#">Trang chủ</a></li>
           <li class="nav-item"><a class="nav-link" href="#features">Tính năng</a></li>
+          <li class="nav-item"><a class="nav-link" href="#tokenomics">Tokenomics</a></li>
+          <li class="nav-item"><a class="nav-link" href="#roadmap">Lộ trình</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">Về chúng tôi</a></li>
+          <li class="nav-item"><a class="nav-link" href="#news">Tin tức</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
         </ul>
       </div>
@@ -122,7 +133,7 @@
       <p>Giải pháp tài chính an toàn và minh bạch trên Blockchain Bitcoin</p>
       <a href="#features" class="btn btn-custom">Khám phá ngay</a>
       <!-- Countdown Timer -->
-      <div class="countdown-section mt-5">
+      <div class="countdown-section">
         <h2>Đếm ngược đến ngày mở</h2>
         <div id="countdown" class="countdown">
           <div><span id="days">0</span><br>Ngày</div>
@@ -137,46 +148,122 @@
   <!-- Features Section -->
   <section id="features" class="features">
     <div class="container">
-      <div class="row text-center">
+      <h2 class="section-title">Tính Năng Nổi Bật</h2>
+      <div class="row">
         <div class="col-md-4 feature">
           <i class="fas fa-shield-alt"></i>
           <h3>Bảo mật</h3>
-          <p>An toàn tuyệt đối với công nghệ blockchain tiên tiến.</p>
+          <p>Công nghệ blockchain tiên tiến đảm bảo an toàn tuyệt đối cho các giao dịch.</p>
         </div>
         <div class="col-md-4 feature">
           <i class="fas fa-bolt"></i>
           <h3>Nhanh chóng</h3>
-          <p>Giao dịch tức thì với tốc độ vượt trội và phí thấp.</p>
+          <p>Giao dịch tức thì với tốc độ cao và phí giao dịch tối ưu.</p>
         </div>
         <div class="col-md-4 feature">
-          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-eye"></i>
           <h3>Minh bạch</h3>
-          <p>Mọi giao dịch được công khai kiểm chứng trên blockchain.</p>
+          <p>Mọi giao dịch đều được kiểm chứng công khai trên blockchain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Tokenomics Section -->
+  <section id="tokenomics" class="tokenomics bg-light">
+    <div class="container">
+      <h2 class="section-title">Tokenomics</h2>
+      <div class="row">
+        <div class="col-md-6 token">
+          <i class="fas fa-chart-pie"></i>
+          <h3>Phân bổ</h3>
+          <p>Thông tin chi tiết về phân bổ USVN bao gồm dự trữ, phát hành và lưu thông.</p>
+        </div>
+        <div class="col-md-6 token">
+          <i class="fas fa-balance-scale"></i>
+          <h3>Cơ chế ổn định</h3>
+          <p>Hệ thống ổn định giá được đảm bảo bởi công nghệ blockchain Bitcoin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Roadmap Section -->
+  <section id="roadmap" class="roadmap">
+    <div class="container">
+      <h2 class="section-title">Lộ Trình Phát Triển</h2>
+      <div class="row">
+        <div class="col-md-3 step">
+          <i class="fas fa-flag-checkered"></i>
+          <h4>Giai đoạn 1</h4>
+          <p>Khởi động dự án và phát triển hợp đồng thông minh ban đầu.</p>
+        </div>
+        <div class="col-md-3 step">
+          <i class="fas fa-rocket"></i>
+          <h4>Giai đoạn 2</h4>
+          <p>Ra mắt beta, tích hợp ví điện tử và mở rộng đối tác.</p>
+        </div>
+        <div class="col-md-3 step">
+          <i class="fas fa-chart-line"></i>
+          <h4>Giai đoạn 3</h4>
+          <p>Phát triển hệ sinh thái, tăng cường thanh khoản và triển khai các ứng dụng tài chính.</p>
+        </div>
+        <div class="col-md-3 step">
+          <i class="fas fa-trophy"></i>
+          <h4>Giai đoạn 4</h4>
+          <p>Ra mắt chính thức, quảng bá thương hiệu và phát triển cộng đồng.</p>
         </div>
       </div>
     </div>
   </section>
   
   <!-- About Section -->
-  <section id="about" class="container my-5">
-    <div class="row align-items-center">
-      <div class="col-md-6">
-        <h2>Về USVN</h2>
-        <p>
-          USVN Stablecoin là giải pháp tài chính được xây dựng trên nền tảng blockchain Bitcoin,
-          cung cấp môi trường giao dịch an toàn, nhanh chóng và minh bạch. Chúng tôi cam kết đem lại
-          giá trị và sự tin cậy tối đa cho cộng đồng.
-        </p>
+  <section id="about" class="about bg-light">
+    <div class="container">
+      <h2 class="section-title">Về USVN</h2>
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p>
+            USVN Stablecoin là giải pháp tài chính tiên tiến được xây dựng trên nền tảng blockchain Bitcoin, cung cấp môi trường giao dịch an toàn, nhanh chóng và minh bạch. Chúng tôi cam kết đem lại giá trị bền vững và sự tin cậy tối đa cho cộng đồng.
+          </p>
+          <p>
+            Với công nghệ bảo mật hàng đầu và hệ thống ổn định giá thông minh, USVN hứa hẹn trở thành lựa chọn hàng đầu cho các nhà đầu tư và người dùng trong lĩnh vực tài chính kỹ thuật số.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <img src="https://via.placeholder.com/500x300" alt="USVN Stablecoin" class="img-fluid rounded">
+        </div>
       </div>
-      <div class="col-md-6">
-        <img src="https://via.placeholder.com/500x300" alt="USVN Stablecoin" class="img-fluid rounded">
+    </div>
+  </section>
+  
+  <!-- News Section -->
+  <section id="news" class="news">
+    <div class="container">
+      <h2 class="section-title">Tin Tức & Cập Nhật</h2>
+      <div class="row">
+        <div class="col-md-4 article">
+          <i class="fas fa-newspaper"></i>
+          <h4>Bản tin 1</h4>
+          <p>Cập nhật những thông tin mới nhất về USVN và thị trường tài chính kỹ thuật số.</p>
+        </div>
+        <div class="col-md-4 article">
+          <i class="fas fa-newspaper"></i>
+          <h4>Bản tin 2</h4>
+          <p>Thông tin về các sự kiện, hội nghị và các hoạt động từ cộng đồng USVN.</p>
+        </div>
+        <div class="col-md-4 article">
+          <i class="fas fa-newspaper"></i>
+          <h4>Bản tin 3</h4>
+          <p>Nhận định thị trường và phân tích chuyên sâu từ các chuyên gia tài chính.</p>
+        </div>
       </div>
     </div>
   </section>
   
   <!-- Contact Section -->
   <section id="contact" class="container my-5">
-    <h2 class="text-center mb-4">Liên hệ</h2>
+    <h2 class="section-title">Liên hệ</h2>
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <form>
