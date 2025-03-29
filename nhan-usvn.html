@@ -4,39 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nhận 100.000.000 USVN Miễn Phí</title>
-    <link rel="stylesheet" href="styles.css">
     <script src="particles.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(90deg, #007bff, #00ffcc);
+            padding: 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .highlight {
+            color: #00ff00;
+            font-weight: bold;
+            transition: color 0.5s ease-in-out;
+        }
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .feature-box {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .feature-box:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+        }
+        footer {
+            margin-top: 20px;
+            padding: 20px;
+            background: #000;
+        }
+        #history {
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+            width: 80%;
+            margin: 20px auto;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="#">Về USVN</a></li>
+                <li><a href="#">Hỗ trợ</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </nav>
         <h1>Nhận 100.000.000 USVN Miễn Phí</h1>
-        <p>Số tiền còn lại: <span id="remaining-usvn">100000000.0000</span> USVN</p>
+        <p>Số tiền còn lại: <span id="remaining-usvn" class="highlight">100000000.0000</span> USVN</p>
     </header>
 
     <section class="features">
         <div class="feature-box">
             <h3>Tham gia sự kiện</h3>
             <p>Tham gia các sự kiện để nhận USVN miễn phí ngay hôm nay.</p>
-            <span class="reward">+<span id="event-usvn">0.0000</span> USVN</span>
+            <span class="reward highlight">+<span id="event-usvn">0.0000</span> USVN</span>
         </div>
         <div class="feature-box">
             <h3>Chia sẻ trên mạng xã hội</h3>
             <p>Chia sẻ thông tin về USVN lên mạng xã hội để nhận thưởng.</p>
-            <span class="reward">+<span id="share-usvn">0.0000</span> USVN</span>
+            <span class="reward highlight">+<span id="share-usvn">0.0000</span> USVN</span>
         </div>
         <div class="feature-box">
             <h3>Mời bạn bè</h3>
             <p>Mời bạn bè tham gia USVN và nhận thưởng ngay lập tức.</p>
-            <span class="reward">+<span id="invite-usvn">0.0000</span> USVN</span>
+            <span class="reward highlight">+<span id="invite-usvn">0.0000</span> USVN</span>
         </div>
     </section>
 
-    <section class="text-center py-12">
-        <h2 class="text-3xl font-semibold">Lịch sử nhận USVN</h2>
-        <div id="history" class="mt-6 bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl mx-auto text-left">
-            <p class="text-gray-400">Ví dụ: xxxx vừa nhận được từ ...</p>
+    <section>
+        <h2>Lịch sử nhận USVN</h2>
+        <div id="history">
+            <p>Ví dụ: xxxx vừa nhận được từ ...</p>
         </div>
     </section>
+
+    <footer>
+        <p>&copy; 2025 USVN.VN. Mọi quyền được bảo lưu.</p>
+    </footer>
 
     <script>
         let historyList = [];
@@ -47,25 +120,18 @@
 
         function updateHistory(activity, amount) {
             let wallet = "USVN-" + Math.floor(Math.random() * 1000000);
-            let entry = `<p class='text-sm text-gray-300'>${wallet} vừa nhận được ${amount.toFixed(4)} USVN từ ${activity}</p>`;
+            let entry = `<p>${wallet} vừa nhận được ${amount.toFixed(4)} USVN từ ${activity}</p>`;
             historyList.unshift(entry);
             if (historyList.length > 10) historyList.pop();
             document.getElementById("history").innerHTML = historyList.join('');
         }
 
         function decreaseUSVN() {
-            let totalDecrease = (Math.random() * 2 + 1) / 60; // Giảm 1 - 3 USVN mỗi phút
+            let totalDecrease = (Math.random() * 2 + 1) / 180;
             if (remainingUSVN > totalDecrease) {
                 remainingUSVN -= totalDecrease;
-                let remainingText = remainingUSVN.toFixed(4).toString();
-                let formattedText = "";
-                
-                for (let i = 0; i < remainingText.length; i++) {
-                    setTimeout(() => {
-                        formattedText = remainingText.slice(0, i + 1);
-                        document.getElementById("remaining-usvn").innerText = formattedText;
-                    }, i * 50);
-                }
+                let remainingText = remainingUSVN.toFixed(4);
+                document.getElementById("remaining-usvn").innerText = remainingText;
                 
                 let thamGiaAmount = totalDecrease * (thamGia / 10);
                 let chiaSeAmount = totalDecrease * (chiaSe / 10);
