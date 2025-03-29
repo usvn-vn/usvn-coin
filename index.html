@@ -5,8 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USVN.VN - Stablecoin trên Blockchain Bitcoin</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .feature-box {
+            position: relative;
+            overflow: hidden;
+        }
+        .particles-box {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white">
+    
+    <div id="particles-js"></div>
     
     <header class="bg-[#26A17B] fixed top-0 left-0 w-full z-50 shadow-lg">
         <nav class="container mx-auto flex justify-between items-center py-4 px-6">
@@ -25,63 +50,39 @@
     <section id="home" class="text-center py-12">
         <h2 class="text-3xl font-semibold">Tính năng nổi bật</h2>
         <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
-            <div class="p-6 bg-[#2ECC71] rounded-lg">
+            <div class="p-6 bg-[#2ECC71] rounded-lg feature-box">
+                <div class="particles-box" id="particles-1"></div>
                 <h3 class="text-xl font-bold">Giao dịch miễn phí</h3>
                 <p>Giao dịch nội bộ có tốc độ xử lý nhanh gần như tức thì và chi phí gần bằng 0.</p>
             </div>
-            <div class="p-6 bg-[#2ECC71] rounded-lg">
+            <div class="p-6 bg-[#2ECC71] rounded-lg feature-box">
+                <div class="particles-box" id="particles-2"></div>
                 <h3 class="text-xl font-bold">Lưu trữ trên Bitcoin</h3>
                 <p>Công nghệ RGB++ giúp USVN an toàn trên blockchain Bitcoin.</p>
             </div>
-            <div class="p-6 bg-[#2ECC71] rounded-lg">
-                <h3 class="text-xl font-bold">Đào USVN</h3>
-                <p>Nhận USVN bằng cách duy trì node trên PC/Laptop.</p>
-            </div>
-        </div>
-        <div class="mt-10">
-            <h3 class="text-3xl font-semibold">USVN - 3 Cách để có USVN</h3>
-            <div class="mt-6 flex flex-col md:flex-row justify-center gap-4">
-                <a href="#start" class="bg-[#26A17B] text-white py-3 px-6 rounded-lg font-semibold">Nhận miễn phí USVN</a>
-                <a href="#wallet" class="border border-[#26A17B] text-[#26A17B] py-3 px-6 rounded-lg font-semibold">Khai thác Node USVN</a>
-                <a href="#buy" class="border border-[#26A17B] text-[#26A17B] py-3 px-6 rounded-lg font-semibold">Mua và bán USVN</a>
+            <div class="p-6 bg-[#2ECC71] rounded-lg feature-box">
+                <div class="particles-box" id="particles-3"></div>
+                <h3 class="text-xl font-bold">Tính năng ổn định giá</h3>
+                <p>Cơ chế cân bằng giá thông minh giúp duy trì 1 USVN = 1 USDT.</p>
             </div>
         </div>
     </section>
     
-    <section id="node" class="text-center py-12">
-        <h2 class="text-3xl font-semibold">Cài đặt Node</h2>
-        <p class="mt-4">Hướng dẫn cách duy trì node để nhận USVN.</p>
+    <section class="text-center py-12 bg-gray-800">
+        <h2 class="text-3xl font-semibold">Tham gia mạng lưới USVN ngay hôm nay!</h2>
+        <p class="mt-4">Kết nối với cộng đồng, khai thác node hoặc giao dịch USVN để trải nghiệm một hệ sinh thái tài chính phi tập trung an toàn và nhanh chóng.</p>
         <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
-            <div class="p-6 bg-gray-700 rounded-lg">
-                <h3 class="text-xl font-bold">Bước 1</h3>
-                <p>Tải phần mềm node từ trang chính thức của USVN.</p>
+            <div class="p-6 bg-[#3498DB] rounded-lg text-center">
+                <h3 class="text-xl font-bold">Nhận miễn phí USVN</h3>
+                <p>Tham gia các chương trình khuyến mãi và nhận USVN miễn phí.</p>
             </div>
-            <div class="p-6 bg-gray-700 rounded-lg">
-                <h3 class="text-xl font-bold">Bước 2</h3>
-                <p>Cài đặt phần mềm node và kích hoạt trên hệ thống của bạn.</p>
+            <div class="p-6 bg-[#E67E22] rounded-lg text-center">
+                <h3 class="text-xl font-bold">Khai thác Node USVN</h3>
+                <p>Chạy node trên PC/Laptop để nhận thưởng USVN.</p>
             </div>
-            <div class="p-6 bg-gray-700 rounded-lg">
-                <h3 class="text-xl font-bold">Bước 3</h3>
-                <p>Liên kết ví và bắt đầu nhận USVN.</p>
-            </div>
-        </div>
-    </section>
-    
-    <section id="about" class="text-center py-12 bg-gray-800">
-        <h2 class="text-3xl font-semibold">Lộ trình phát triển</h2>
-        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
-            <div class="p-6 bg-gray-700 rounded-lg">
-                <h3 class="text-xl font-bold">Giai đoạn 1</h3>
-                <p>Ra mắt USVN trên blockchain Bitcoin</p>
-            </div>
-            <div class="p-6 bg-gray-700 rounded-lg">
-                <h3 class="text-xl font-bold">Giai đoạn 2</h3>
-                <p>Mở rộng mạng lưới node đào</p>
-            </div>
-            <div class="p-6 bg-gray-700 rounded-lg">
-                <h3 class="text-xl font-bold">Giai đoạn 3</h3>
-                <p>Giao dịch trên hệ thống ví lưu trữ Bitcoin</p>
-                <p>USVN sẽ được lưu trữ chung với BTC, tận dụng cơ chế bảo mật và phi tập trung của Bitcoin.</p>
+            <div class="p-6 bg-[#9B59B6] rounded-lg text-center">
+                <h3 class="text-xl font-bold">Mua và bán USVN</h3>
+                <p>Giao dịch USVN trên các sàn giao dịch hoặc giao dịch nội bộ.</p>
             </div>
         </div>
     </section>
@@ -122,5 +123,17 @@
         <p class="text-center mt-6">© 2025 USVN.VN. Mọi quyền được bảo lưu.</p>
     </footer>
     
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                move: { enable: true, speed: 2, direction: "none", random: false }
+            }
+        });
+    </script>
 </body>
 </html>
