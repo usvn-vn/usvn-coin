@@ -19,13 +19,11 @@
             position: relative;
             overflow: hidden;
         }
-        .particles-box {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
+        .wallet-box {
+            background: linear-gradient(135deg, #1ABC9C, #16A085);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -49,6 +47,23 @@
     
     <div class="pt-20"></div>
     
+    <section id="home" class="text-center py-12">
+        <h2 class="text-3xl font-semibold">USVN - Stablecoin Ổn Định, An Toàn & Hoàn Toàn Miễn Phí</h2>
+    </section>
+    
+    <section id="wallet" class="text-center py-6">
+        <div class="wallet-box mx-auto max-w-lg">
+            <h2 class="text-2xl font-semibold">Ví USVN</h2>
+            <p class="mt-2">Dễ dàng lưu trữ, giao dịch và quản lý USVN trên các ví hỗ trợ Solana như Phantom, Solflare và Trust Wallet.</p>
+        </div>
+    </section>
+    
+    <section id="guide" class="text-center py-6">
+        <h2 class="text-2xl font-semibold">Hướng dẫn tạo và kết nối ví</h2>
+        <p class="mt-2">Tải ví hỗ trợ USVN: <a href="#" class="text-blue-400 underline">Phantom</a>, <a href="#" class="text-blue-400 underline">Solflare</a>, <a href="#" class="text-blue-400 underline">Trust Wallet</a>.</p>
+        <p class="mt-2">Hướng dẫn kết nối ví và nhận USVN miễn phí.</p>
+    </section>
+    
     <section id="coin-info" class="text-center py-6">
         <h2 class="text-2xl font-semibold">Thông tin về USVN</h2>
         <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-6 px-6">
@@ -57,71 +72,41 @@
                 <p>2,1 Tỷ USVN</p>
             </div>
             <div class="p-4 bg-gray-800 rounded-lg">
-                <h3 class="text-lg font-bold">💰 Tổng lưu hành</h3>
+                <h3 class="text-lg font-bold">💰 Số dư về Ví</h3>
                 <p>100 Triệu USVN</p>
             </div>
             <div class="p-4 bg-gray-800 rounded-lg">
-                <h3 class="text-lg font-bold">🔒 Đang khóa</h3>
-                <p>2 Tỷ USVN</p>
+                <h3 class="text-lg font-bold">🔄 Số Dư Chuyển</h3>
+                <p>50 Triệu USVN</p>
             </div>
             <div class="p-4 bg-gray-800 rounded-lg">
-                <h3 class="text-lg font-bold">🔓 Đang mở khóa</h3>
-                <p>100 Triệu USVN</p>
-            </div>
-            <div class="p-4 bg-gray-800 rounded-lg">
-                <h3 class="text-lg font-bold">🌎 Ví tham gia</h3>
+                <h3 class="text-lg font-bold">🌎 Số ví tham gia</h3>
                 <p>Hơn 50,000 ví</p>
             </div>
         </div>
     </section>
     
-    <section id="home" class="text-center py-12">
-        <h2 class="text-3xl font-semibold">USVN - Stablecoin Ổn Định, An Toàn & Hoàn Toàn Miễn Phí</h2>
+    <section id="features" class="text-center py-12">
         <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
             <div class="p-6 bg-[#1ABC9C] rounded-lg feature-box">
-                <div class="particles-box"></div>
                 <h3 class="text-xl font-bold">📱 Tích hợp dễ dàng</h3>
                 <p>Hỗ trợ ví như Phantom, Solflare, Trust Wallet.</p>
             </div>
             <div class="p-6 bg-[#E67E22] rounded-lg feature-box">
-                <div class="particles-box"></div>
                 <h3 class="text-xl font-bold">🔗 Bảo mật cao</h3>
                 <p>Proof-of-History (PoH) giúp xác minh giao dịch hiệu quả.</p>
             </div>
             <div class="p-6 bg-[#F39C12] rounded-lg feature-box">
-                <div class="particles-box"></div>
                 <h3 class="text-xl font-bold">🛡 Phi tập trung cao</h3>
                 <p>Chạy trên hàng nghìn node, giảm rủi ro tập trung.</p>
             </div>
-            <div class="p-6 bg-[#2C3E50] rounded-lg feature-box">
-                <div class="particles-box"></div>
-                <h3 class="text-xl font-bold">🔌 Tương thích Web3</h3>
-                <p>Hỗ trợ các công cụ Web3 giúp tích hợp nhanh.</p>
-            </div>
-            <div class="p-6 bg-[#8E44AD] rounded-lg feature-box">
-                <div class="particles-box"></div>
-                <h3 class="text-xl font-bold">💡 Hỗ trợ Smart Contract</h3>
-                <p>Dễ dàng xây dựng DApp, DeFi, NFT.</p>
-            </div>
-            <div class="p-6 bg-[#9B59B6] rounded-lg feature-box">
-                <div class="particles-box"></div>
-                <h3 class="text-xl font-bold">⚡ Mạng lưới mở rộng</h3>
+            <div class="p-6 bg-[#3498DB] rounded-lg feature-box">
+                <h3 class="text-xl font-bold">⚡ Mở rộng mạng lưới</h3>
                 <p>Hỗ trợ DeFi, NFT, và GameFi.</p>
             </div>
-            <div class="p-6 bg-[#3498DB] rounded-lg feature-box">
-                <div class="particles-box"></div>
-                <h3 class="text-xl font-bold">💰 Phí giao dịch gần như bằng 0</h3>
-                <p>Phí giao dịch chỉ khoảng $0.00025.</p>
-            </div>
-            <div class="p-6 bg-[#2ECC71] rounded-lg feature-box">
-                <div class="particles-box"></div>
-                <h3 class="text-xl font-bold">🚀 Tốc độ cao</h3>
-                <p>Xử lý lên đến 65.000 giao dịch mỗi giây.</p>
-            </div>
-            <div class="p-6 bg-[#27AE60] rounded-lg feature-box">
-                <div class="particles-box"></div>
+            <div class="p-6 bg-[#9B59B6] rounded-lg feature-box">
                 <h3 class="text-xl font-bold">🎮 Thân thiện với GameFi</h3>
-                <p>Game blockchain chọn USVN nhờ phí thấp & tốc độ cao.</p>
+                <p>Game blockchain chọn Solana nhờ phí thấp & tốc độ cao.</p>
             </div>
         </div>
     </section>
@@ -129,18 +114,5 @@
     <footer class="bg-gray-900 text-white py-12 px-6 text-center">
         <p>© 2025 USVN.VN. Mọi quyền được bảo lưu.</p>
     </footer>
-    
-    <script>
-        particlesJS("particles-js", {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: false },
-                size: { value: 3, random: true },
-                move: { enable: true, speed: 2, direction: "none", random: false }
-            }
-        });
-    </script>
 </body>
 </html>
