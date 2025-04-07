@@ -116,4 +116,60 @@
         const questionsDiv = document.getElementById('questions');
         const quizForm = document.getElementById('quiz-form');
 
-        // Hiển thị các
+        // Hiển thị các ô phần thưởng
+        function displayPrizes() {
+            prizes.forEach((url) => {
+                const prizeDiv = document.createElement('div');
+                prizeDiv.classList.add('prize');
+                prizeDiv.style.backgroundImage = `url(${url})`;
+                prizeWheel.appendChild(prizeDiv);
+            });
+        }
+
+        // Quay thưởng và hiển thị kết quả
+        function spinWheel() {
+            resultDiv.textContent = "Đang quay...";
+
+            // Tốc độ quay: Quay trong 40 giây
+            let currentIndex = 0;
+            let interval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % prizes.length;
+                resultDiv.innerHTML = `<img src="${prizes[currentIndex]}" alt="Phần thưởng">`;
+            }, 100); // Cập nhật mỗi 100ms để tạo cảm giác quay
+
+            // Dừng quay sau 40 giây (40000ms)
+            setTimeout(() => {
+                clearInterval(interval); // Dừng quay
+                let randomIndex = Math.floor(Math.random() * prizes.length); // Lựa chọn phần thưởng ngẫu nhiên
+                resultDiv.innerHTML = `<img src="${prizes[randomIndex]}" alt="Phần thưởng">`;
+
+                // Hiển thị câu hỏi sau khi quay trúng
+                setTimeout(() => {
+                    questionsDiv.style.display = "block";
+                }, 1000);
+            }, 40000); // Quay trong 40 giây
+        }
+
+        // Xử lý khi người chơi trả lời câu hỏi
+        quizForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const q1 = document.getElementById('q1').value;
+            const q2 = document.getElementById('q2').value;
+            const q3 = document.getElementById('q3').value;
+
+            // Xử lý câu trả lời (ví dụ, bạn có thể lưu trữ câu trả lời ở đây)
+            alert(`Cảm ơn bạn đã trả lời câu hỏi!\nCâu trả lời:\n1. ${q1}\n2. ${q2}\n3. ${q3}`);
+
+            // Ẩn câu hỏi sau khi trả lời
+            questionsDiv.style.display = "none";
+        });
+
+        // Khi nhấn nút quay thưởng
+        spinButton.addEventListener('click', spinWheel);
+
+        // Hiển thị các phần thưởng
+        displayPrizes();
+    </script>
+
+</body>
+</html>
