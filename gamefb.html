@@ -23,6 +23,9 @@
       text-align: center;
       color: #333;
     }
+    .input-container {
+      margin-bottom: 20px;
+    }
     .prize-container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -59,13 +62,37 @@
     .hidden {
       display: none;
     }
+    .question-container {
+      margin-top: 20px;
+    }
+    .question-container input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
     <h1>Game Quay Thưởng</h1>
-    <div class="prize-container" id="prizeContainer">
+    
+    <!-- Nhập Link Facebook -->
+    <div class="input-container">
+      <label for="fbLink">Nhập Link Facebook của bạn:</label>
+      <input type="text" id="fbLink" placeholder="https://www.facebook.com/username" />
+      <button onclick="fetchFBInfo()">Trích xuất thông tin</button>
+    </div>
+
+    <div id="userInfo" class="hidden">
+      <h2 id="userName"></h2>
+      <p>ID Facebook: <span id="userId"></span></p>
+    </div>
+
+    <!-- Quay thưởng -->
+    <div class="prize-container" id="prizeContainer" class="hidden">
       <div class="prize" id="prize1"><img src="https://via.placeholder.com/150" alt="Phần thưởng 1"></div>
       <div class="prize" id="prize2"><img src="https://via.placeholder.com/150" alt="Phần thưởng 2"></div>
       <div class="prize" id="prize3"><img src="https://via.placeholder.com/150" alt="Phần thưởng 3"></div>
@@ -73,31 +100,68 @@
       <div class="prize" id="prize5"><img src="https://via.placeholder.com/150" alt="Phần thưởng 5"></div>
       <div class="prize" id="prize6"><img src="https://via.placeholder.com/150" alt="Phần thưởng 6"></div>
     </div>
-    <button onclick="startSpin()">Quay Thưởng</button>
+
+    <button id="spinButton" class="hidden" onclick="startSpin()">Quay Thưởng</button>
+
+    <!-- Hiển thị kết quả -->
     <h2 id="result"></h2>
+
+    <!-- Câu hỏi trả lời -->
+    <div class="question-container hidden" id="questionContainer">
+      <h3>Trả lời 3 câu hỏi để nhận thưởng!</h3>
+      <input type="text" id="question1" placeholder="Câu hỏi 1" />
+      <input type="text" id="question2" placeholder="Câu hỏi 2" />
+      <input type="text" id="question3" placeholder="Câu hỏi 3" />
+      <button onclick="submitAnswers()">Gửi câu trả lời</button>
+    </div>
   </div>
 
   <script>
     let spinning = false;
     let interval;
-    let spinDuration = 3000; // Thời gian quay
-    let stopTime = Math.floor(Math.random() * 1000) + 1000; // Thời gian dừng ngẫu nhiên (từ 1 đến 2 giây)
+    let spinDuration = 3000;
+    let stopTime = Math.floor(Math.random() * 1000) + 1000;
+    const prizes = ['Giải 1', 'Giải 2', 'Giải 3', 'Giải 4', 'Giải 5', 'Giải 6'];
+    
+    // Trích xuất thông tin từ link Facebook
+    async function fetchFBInfo() {
+      const fbLink = document.getElementById('fbLink').value;
+      const username = fbLink.split("facebook.com/")[1];
+      
+      if (username) {
+        // Dùng Facebook Graph API để lấy thông tin (Yêu cầu có token hợp lệ)
+        const accessToken = 'YOUR_FACEBOOK_ACCESS_TOKEN'; // Đặt token tại đây
+        const url = `https://graph.facebook.com/${username}?access_token=${accessToken}`;
 
-    // Danh sách phần thưởng
-    const prizes = [
-      'Giải 1', 'Giải 2', 'Giải 3', 'Giải 4', 'Giải 5', 'Giải 6'
-    ];
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
 
-    // Hàm bắt đầu quay
+          if (data.id) {
+            document.getElementById('userName').innerText = data.name;
+            document.getElementById('userId').innerText = data.id;
+            document.getElementById('userInfo').classList.remove('hidden');
+            document.getElementById('prizeContainer').classList.remove('hidden');
+            document.getElementById('spinButton').classList.remove('hidden');
+          } else {
+            alert('Không thể lấy thông tin từ Facebook.');
+          }
+        } catch (error) {
+          alert('Lỗi khi truy cập API Facebook.');
+        }
+      } else {
+        alert('Vui lòng nhập một liên kết Facebook hợp lệ.');
+      }
+    }
+
+    // Bắt đầu quay thưởng
     function startSpin() {
-      if (spinning) return; // Nếu đang quay thì không thể quay lại
+      if (spinning) return;
 
       spinning = true;
       document.getElementById('result').textContent = 'Đang quay...';
 
       let prizeElements = document.querySelectorAll('.prize');
-
-      // Xóa kết quả cũ
       for (let prize of prizeElements) {
         prize.style.transform = 'rotate(0deg)';
       }
@@ -105,26 +169,37 @@
       let rotation = 0;
       let spinSpeed = 10;
 
-      // Quay các ô
       interval = setInterval(function() {
         rotation += spinSpeed;
         prizeElements.forEach(prize => {
           prize.style.transform = `rotate(${rotation}deg)`;
         });
 
-        // Giảm tốc độ quay
         if (spinSpeed > 0.1) {
-          spinSpeed -= 0.01; // Giảm dần tốc độ quay
+          spinSpeed -= 0.01;
         }
 
-        // Dừng lại sau khi quay đủ lâu
         if (rotation >= stopTime) {
-          clearInterval(interval); // Dừng quay
+          clearInterval(interval);
           let randomPrizeIndex = Math.floor(Math.random() * prizes.length);
           document.getElementById('result').textContent = 'Bạn đã trúng: ' + prizes[randomPrizeIndex];
+          document.getElementById('questionContainer').classList.remove('hidden');
           spinning = false;
         }
       }, 16);
+    }
+
+    // Gửi câu trả lời
+    function submitAnswers() {
+      const answer1 = document.getElementById('question1').value;
+      const answer2 = document.getElementById('question2').value;
+      const answer3 = document.getElementById('question3').value;
+
+      if (answer1 && answer2 && answer3) {
+        alert('Cảm ơn bạn đã trả lời xong câu hỏi! Chúc mừng bạn đã nhận thưởng!');
+      } else {
+        alert('Vui lòng trả lời đầy đủ các câu hỏi!');
+      }
     }
   </script>
 
