@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Vòng Quay May Mắn</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: #fefefe;
+      padding: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      background: #ffffff;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #ff4747;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🎁 Vòng Quay May Mắn 🎁</h2>
+    <input type="text" id="name" placeholder="Họ tên Facebook" required>
+    <input type="text" id="zalo" placeholder="Số điện thoại Zalo" required>
+    <button onclick="quaySo()">Quay Số</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function quaySo() {
+      const name = document.getElementById("name").value.trim();
+      const zalo = document.getElementById("zalo").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (!name || !zalo) {
+        resultDiv.innerText = "❗ Vui lòng điền đầy đủ thông tin!";
+        return;
+      }
+
+      // Khống chế % trúng ở đây (VD: 20% trúng)
+      const tiLeTrung = 0.2; // 0.2 = 20%
+      const trung = Math.random() < tiLeTrung;
+
+      if (trung) {
+        resultDiv.innerHTML = `🎉 Chúc mừng ${name}! Bạn đã TRÚNG QUÀ!<br>👉 BTC sẽ liên hệ qua Zalo: ${zalo}`;
+      } else {
+        resultDiv.innerHTML = `😢 Rất tiếc, bạn chưa may mắn. Hãy thử lại sau nhé, ${name}!`;
+      }
+    }
+  </script>
+
+</body>
+</html>
