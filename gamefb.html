@@ -2,21 +2,23 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vòng Quay May Mắn</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
       text-align: center;
-      background: #f0f8ff;
-      padding: 20px;
+      background: #f8f9fa;
+      padding: 30px;
     }
     .container {
-      max-width: 400px;
+      width: 100%;
+      max-width: 500px;
       margin: auto;
       padding: 20px;
       background: #fff;
       border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
     input {
       width: 90%;
@@ -32,12 +34,12 @@
       border: 10px solid #ffcc00;
       border-radius: 50%;
       position: relative;
-      background: conic-gradient(#f44336 0deg 60deg, #4caf50 60deg 180deg, #2196f3 180deg 300deg, #f44336 300deg 360deg);
+      background: conic-gradient(#f44336 0deg 45deg, #4caf50 45deg 90deg, #2196f3 90deg 135deg, #ffeb3b 135deg 180deg, #ff9800 180deg 225deg, #e91e63 225deg 270deg, #9c27b0 270deg 315deg, #03a9f4 315deg 360deg);
       transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
     }
     #pointer {
-      width: 0; 
-      height: 0; 
+      width: 0;
+      height: 0;
       border-left: 15px solid transparent;
       border-right: 15px solid transparent;
       border-bottom: 30px solid #333;
@@ -45,3 +47,94 @@
       position: relative;
       top: -20px;
     }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    .share-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🎉 Vòng Quay May Mắn 🎉</h2>
+    <input type="text" id="name" placeholder="Họ tên Facebook" required>
+    <input type="text" id="zalo" placeholder="Số điện thoại Zalo" required>
+    <button onclick="quay()">🎯 Quay Ngay</button>
+    <div id="wheel"></div>
+    <div id="pointer"></div>
+    <div class="result" id="result"></div>
+    <button class="share-btn" id="shareBtn" style="display: none;" onclick="share()">Chia sẻ để nhận thêm lượt quay</button>
+  </div>
+
+  <script>
+    let isSpinning = false;
+    let spinResult = '';
+    
+    // Phần thưởng
+    const prizes = [
+      { name: 'Thẻ Cào 50K', color: '#f44336' },
+      { name: 'Voucher 100K', color: '#4caf50' },
+      { name: 'Điểm thưởng 500', color: '#2196f3' },
+      { name: 'Bộ quà tặng', color: '#ffeb3b' },
+      { name: 'Thẻ Cào 20K', color: '#ff9800' },
+      { name: 'Voucher 200K', color: '#e91e63' },
+      { name: 'Điểm thưởng 1000', color: '#9c27b0' },
+      { name: 'Không trúng', color: '#03a9f4' },
+    ];
+
+    function quay() {
+      const name = document.getElementById('name').value.trim();
+      const zalo = document.getElementById('zalo').value.trim();
+      const resultDiv = document.getElementById('result');
+
+      if (!name || !zalo) {
+        resultDiv.innerText = '❗ Vui lòng điền đầy đủ thông tin!';
+        return;
+      }
+
+      if (isSpinning) return;
+      isSpinning = true;
+
+      // Random kết quả quay
+      const resultIndex = Math.floor(Math.random() * prizes.length);
+      spinResult = prizes[resultIndex].name;
+      const rotation = 360 * 5 + (resultIndex * (360 / prizes.length)) + Math.floor(Math.random() * (360 / prizes.length));
+      document.getElementById('wheel').style.transform = `rotate(${rotation}deg)`;
+
+      // Kết quả
+      setTimeout(() => {
+        resultDiv.innerHTML = `🎉 Chúc mừng ${name}! Bạn đã trúng: <span style="color:${prizes[resultIndex].color}">${spinResult}</span><br>BTC sẽ liên hệ qua Zalo: ${zalo}`;
+        document.getElementById('shareBtn').style.display = 'inline-block'; // Show chia sẻ
+        isSpinning = false;
+      }, 4200);
+    }
+
+    function share() {
+      alert('🎉 Chia sẻ thành công! Bạn đã nhận thêm lượt quay!');
+      document.getElementById('shareBtn').style.display = 'none'; // Hide chia sẻ sau khi nhấn
+    }
+  </script>
+
+</body>
+</html>
