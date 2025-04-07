@@ -1,196 +1,119 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Quay Thưởng</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f7fa;
-      padding: 20px;
-    }
-    .container {
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-      padding: 30px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    .input-container {
-      margin-bottom: 20px;
-    }
-    .prize-container {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      width: 100%;
-      overflow: hidden;
-    }
-    .prize {
-      width: 100px;
-      height: 100px;
-      background-color: #ccc;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 8px;
-      transition: transform 0.3s ease-in-out;
-      position: relative;
-    }
-    .prize img {
-      width: 80%;
-      height: 80%;
-      object-fit: cover;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      background-color: #4caf50;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    .hidden {
-      display: none;
-    }
-    .question-container {
-      margin-top: 20px;
-    }
-    .question-container input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Quay Thưởng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .prize-wheel {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .prize {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        #questions {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="container">
     <h1>Game Quay Thưởng</h1>
 
-    <!-- Nhập ID và Tên Facebook -->
-    <div class="input-container">
-      <label for="userName">Nhập Tên Facebook của bạn:</label>
-      <input type="text" id="userName" placeholder="Tên Facebook" />
+    <div class="container">
+        <label for="fb-id">Nhập ID Facebook của bạn:</label><br>
+        <input type="text" id="fb-id" placeholder="ID Facebook"><br><br>
+
+        <button id="spin-button">Quay Thưởng</button>
+
+        <div id="questions">
+            <h3>Trả lời 3 câu hỏi để nhận thưởng:</h3>
+            <form id="quiz-form">
+                <label for="q1">Câu hỏi 1: Màu sắc yêu thích của bạn?</label><br>
+                <input type="text" id="q1" required><br><br>
+
+                <label for="q2">Câu hỏi 2: Thành phố bạn sinh sống?</label><br>
+                <input type="text" id="q2" required><br><br>
+
+                <label for="q3">Câu hỏi 3: Sở thích của bạn là gì?</label><br>
+                <input type="text" id="q3" required><br><br>
+
+                <button type="submit">Gửi câu trả lời</button>
+            </form>
+        </div>
+
+        <div class="prize-wheel" id="prize-wheel">
+            <!-- Các ô phần thưởng sẽ được hiển thị ở đây -->
+        </div>
+
+        <div id="result"></div>
     </div>
-    
-    <div class="input-container">
-      <label for="userId">Nhập ID Facebook của bạn:</label>
-      <input type="text" id="userId" placeholder="ID Facebook" />
-    </div>
 
-    <button onclick="startGame()">Bắt đầu</button>
+    <script>
+        const prizes = [
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+1',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+2',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+3',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+4',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+5',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+6',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+7',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+8',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+9',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+10',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+11',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+12',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+13',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+14',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+15',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+16',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+17',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+18',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+19',
+            'https://via.placeholder.com/100?text=Gi%E1%BA%A3i+20'
+        ];
 
-    <!-- Hiển thị thông tin người chơi -->
-    <div id="userInfo" class="hidden">
-      <h2 id="displayUserName"></h2>
-      <p>ID Facebook: <span id="displayUserId"></span></p>
-    </div>
+        const prizeWheel = document.getElementById('prize-wheel');
+        const spinButton = document.getElementById('spin-button');
+        const resultDiv = document.getElementById('result');
+        const questionsDiv = document.getElementById('questions');
+        const quizForm = document.getElementById('quiz-form');
 
-    <!-- Quay thưởng -->
-    <div class="prize-container" id="prizeContainer" class="hidden">
-      <div class="prize" id="prize1"><img src="https://via.placeholder.com/150" alt="Phần thưởng 1"></div>
-      <div class="prize" id="prize2"><img src="https://via.placeholder.com/150" alt="Phần thưởng 2"></div>
-      <div class="prize" id="prize3"><img src="https://via.placeholder.com/150" alt="Phần thưởng 3"></div>
-      <div class="prize" id="prize4"><img src="https://via.placeholder.com/150" alt="Phần thưởng 4"></div>
-      <div class="prize" id="prize5"><img src="https://via.placeholder.com/150" alt="Phần thưởng 5"></div>
-      <div class="prize" id="prize6"><img src="https://via.placeholder.com/150" alt="Phần thưởng 6"></div>
-    </div>
-
-    <button id="spinButton" class="hidden" onclick="startSpin()">Quay Thưởng</button>
-
-    <!-- Hiển thị kết quả -->
-    <h2 id="result"></h2>
-
-    <!-- Câu hỏi trả lời -->
-    <div class="question-container hidden" id="questionContainer">
-      <h3>Trả lời 3 câu hỏi để nhận thưởng!</h3>
-      <input type="text" id="question1" placeholder="Câu hỏi 1" />
-      <input type="text" id="question2" placeholder="Câu hỏi 2" />
-      <input type="text" id="question3" placeholder="Câu hỏi 3" />
-      <button onclick="submitAnswers()">Gửi câu trả lời</button>
-    </div>
-  </div>
-
-  <script>
-    let spinning = false;
-    let interval;
-    let spinDuration = 3000;
-    let stopTime = Math.floor(Math.random() * 1000) + 1000;
-    const prizes = ['Giải 1', 'Giải 2', 'Giải 3', 'Giải 4', 'Giải 5', 'Giải 6'];
-
-    // Bắt đầu trò chơi
-    function startGame() {
-      const userName = document.getElementById('userName').value;
-      const userId = document.getElementById('userId').value;
-
-      if (userName && userId) {
-        // Hiển thị thông tin người chơi
-        document.getElementById('displayUserName').innerText = userName;
-        document.getElementById('displayUserId').innerText = userId;
-        document.getElementById('userInfo').classList.remove('hidden');
-        document.getElementById('prizeContainer').classList.remove('hidden');
-        document.getElementById('spinButton').classList.remove('hidden');
-      } else {
-        alert('Vui lòng nhập đầy đủ thông tin!');
-      }
-    }
-
-    // Bắt đầu quay thưởng
-    function startSpin() {
-      if (spinning) return;
-
-      spinning = true;
-      document.getElementById('result').textContent = 'Đang quay...';
-
-      let prizeElements = document.querySelectorAll('.prize');
-      let currentIndex = 0;
-
-      // Di chuyển các phần quà qua lại
-      interval = setInterval(function() {
-        currentIndex = (currentIndex + 1) % prizeElements.length;
-        const prize = prizeElements[currentIndex];
-        
-        // Di chuyển qua lại
-        prize.style.transform = `translateX(${currentIndex * 120 - 240}px)`;
-        
-        // Dừng quay sau một khoảng thời gian ngẫu nhiên
-        if (currentIndex === prizeElements.length - 1) {
-          clearInterval(interval);
-          let randomPrizeIndex = Math.floor(Math.random() * prizes.length);
-          document.getElementById('result').textContent = 'Bạn đã trúng: ' + prizes[randomPrizeIndex];
-          document.getElementById('questionContainer').classList.remove('hidden');
-          spinning = false;
-        }
-      }, 300); // Thời gian mỗi lần di chuyển
-    }
-
-    // Gửi câu trả lời
-    function submitAnswers() {
-      const answer1 = document.getElementById('question1').value;
-      const answer2 = document.getElementById('question2').value;
-      const answer3 = document.getElementById('question3').value;
-
-      if (answer1 && answer2 && answer3) {
-        alert('Cảm ơn bạn đã trả lời xong câu hỏi! Chúc mừng bạn đã nhận thưởng!');
-      } else {
-        alert('Vui lòng trả lời đầy đủ các câu hỏi!');
-      }
-    }
-  </script>
-
-</body>
-</html>
+        // Hiển thị các
