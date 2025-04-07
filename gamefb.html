@@ -23,44 +23,38 @@
       text-align: center;
       color: #333;
     }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    input, button {
+    .prize-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
+    }
+    .prize {
+      height: 100px;
+      background-color: #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      transition: transform 0.2s ease;
+    }
+    .prize img {
+      width: 80%;
+      height: 80%;
+      object-fit: cover;
     }
     button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
       background-color: #4caf50;
       color: white;
       cursor: pointer;
     }
     button:hover {
       background-color: #45a049;
-    }
-    .history {
-      margin-top: 30px;
-      border-top: 2px solid #ddd;
-      padding-top: 20px;
-    }
-    .history h3 {
-      text-align: center;
-    }
-    .history table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    .history table, th, td {
-      border: 1px solid #ddd;
-    }
-    .history th, .history td {
-      padding: 10px;
-      text-align: left;
     }
     .hidden {
       display: none;
@@ -71,121 +65,68 @@
 
   <div class="container">
     <h1>Game Quay Thưởng</h1>
-
-    <div class="form-group">
-      <input type="text" id="name" placeholder="Nhập tên bạn" />
-      <input type="text" id="phone" placeholder="Nhập số điện thoại" />
-      <button onclick="spinWheel()">Quay Thưởng</button>
+    <div class="prize-container" id="prizeContainer">
+      <div class="prize" id="prize1"><img src="https://via.placeholder.com/150" alt="Phần thưởng 1"></div>
+      <div class="prize" id="prize2"><img src="https://via.placeholder.com/150" alt="Phần thưởng 2"></div>
+      <div class="prize" id="prize3"><img src="https://via.placeholder.com/150" alt="Phần thưởng 3"></div>
+      <div class="prize" id="prize4"><img src="https://via.placeholder.com/150" alt="Phần thưởng 4"></div>
+      <div class="prize" id="prize5"><img src="https://via.placeholder.com/150" alt="Phần thưởng 5"></div>
+      <div class="prize" id="prize6"><img src="https://via.placeholder.com/150" alt="Phần thưởng 6"></div>
     </div>
-
-    <div id="spinResult" class="hidden">
-      <h2 id="resultText"></h2>
-      <div id="questionSection" class="hidden">
-        <h3>Trả lời 3 câu hỏi sau:</h3>
-        <input type="text" id="question1" placeholder="Câu hỏi 1" />
-        <input type="text" id="question2" placeholder="Câu hỏi 2" />
-        <input type="text" id="question3" placeholder="Câu hỏi 3" />
-        <button onclick="submitAnswers()">Gửi Câu Trả Lời</button>
-      </div>
-    </div>
-
-    <div class="history" id="historySection">
-      <h3>Lịch sử quay thưởng</h3>
-      <table id="historyTable">
-        <tr>
-          <th>Tên</th>
-          <th>SĐT</th>
-          <th>Kết quả</th>
-          <th>Trạng thái trả lời</th>
-        </tr>
-      </table>
-    </div>
+    <button onclick="startSpin()">Quay Thưởng</button>
+    <h2 id="result"></h2>
   </div>
 
   <script>
-    const history = [];
+    let spinning = false;
+    let interval;
+    let spinDuration = 3000; // Thời gian quay
+    let stopTime = Math.floor(Math.random() * 1000) + 1000; // Thời gian dừng ngẫu nhiên (từ 1 đến 2 giây)
 
-    // Hàm quay thưởng
-    function spinWheel() {
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
+    // Danh sách phần thưởng
+    const prizes = [
+      'Giải 1', 'Giải 2', 'Giải 3', 'Giải 4', 'Giải 5', 'Giải 6'
+    ];
 
-      if (!name || !phone) {
-        alert('Vui lòng nhập tên và số điện thoại!');
-        return;
+    // Hàm bắt đầu quay
+    function startSpin() {
+      if (spinning) return; // Nếu đang quay thì không thể quay lại
+
+      spinning = true;
+      document.getElementById('result').textContent = 'Đang quay...';
+
+      let prizeElements = document.querySelectorAll('.prize');
+
+      // Xóa kết quả cũ
+      for (let prize of prizeElements) {
+        prize.style.transform = 'rotate(0deg)';
       }
 
-      // Simulate a random prize outcome
-      const isWinner = Math.random() < 0.5; // 50% xác suất trúng thưởng
-      const resultText = document.getElementById('resultText');
-      const questionSection = document.getElementById('questionSection');
-      const spinResult = document.getElementById('spinResult');
+      let rotation = 0;
+      let spinSpeed = 10;
 
-      // Hiển thị kết quả quay
-      if (isWinner) {
-        resultText.textContent = `${name}, bạn đã trúng thưởng!`;
-        questionSection.classList.remove('hidden');
-      } else {
-        resultText.textContent = `${name}, bạn chưa trúng thưởng. Hãy thử lại sau!`;
-        questionSection.classList.add('hidden');
-      }
+      // Quay các ô
+      interval = setInterval(function() {
+        rotation += spinSpeed;
+        prizeElements.forEach(prize => {
+          prize.style.transform = `rotate(${rotation}deg)`;
+        });
 
-      // Hiển thị kết quả quay thưởng
-      spinResult.classList.remove('hidden');
-    }
+        // Giảm tốc độ quay
+        if (spinSpeed > 0.1) {
+          spinSpeed -= 0.01; // Giảm dần tốc độ quay
+        }
 
-    // Hàm gửi câu trả lời
-    function submitAnswers() {
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const question1 = document.getElementById('question1').value.trim();
-      const question2 = document.getElementById('question2').value.trim();
-      const question3 = document.getElementById('question3').value.trim();
-
-      if (!question1 || !question2 || !question3) {
-        alert('Vui lòng trả lời đầy đủ 3 câu hỏi!');
-        return;
-      }
-
-      // Lưu lịch sử quay thưởng
-      const result = `${name} - ${phone} đã trúng thưởng và trả lời câu hỏi: ${question1}, ${question2}, ${question3}`;
-      history.push({ name, phone, result, answered: true });
-
-      // Cập nhật bảng lịch sử
-      updateHistory();
-
-      alert('Cảm ơn bạn đã trả lời câu hỏi!');
-
-      // Ẩn phần câu hỏi và quay lại trang chủ
-      document.getElementById('spinResult').classList.add('hidden');
-      document.getElementById('questionSection').classList.add('hidden');
-      document.getElementById('name').value = '';
-      document.getElementById('phone').value = '';
-    }
-
-    // Hàm cập nhật lịch sử quay thưởng
-    function updateHistory() {
-      const historyTable = document.getElementById('historyTable');
-      historyTable.innerHTML = `
-        <tr>
-          <th>Tên</th>
-          <th>SĐT</th>
-          <th>Kết quả</th>
-          <th>Trạng thái trả lời</th>
-        </tr>
-      `;
-
-      history.forEach(item => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${item.name}</td>
-          <td>${item.phone}</td>
-          <td>${item.result}</td>
-          <td>${item.answered ? 'Đã trả lời' : 'Chưa trả lời'}</td>
-        `;
-        historyTable.appendChild(row);
-      });
+        // Dừng lại sau khi quay đủ lâu
+        if (rotation >= stopTime) {
+          clearInterval(interval); // Dừng quay
+          let randomPrizeIndex = Math.floor(Math.random() * prizes.length);
+          document.getElementById('result').textContent = 'Bạn đã trúng: ' + prizes[randomPrizeIndex];
+          spinning = false;
+        }
+      }, 16);
     }
   </script>
+
 </body>
 </html>
