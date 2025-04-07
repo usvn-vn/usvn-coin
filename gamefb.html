@@ -81,16 +81,23 @@
   <div class="container">
     <h1>Game Quay Thưởng</h1>
 
-    <!-- Nhập Link Facebook -->
+    <!-- Nhập ID và Tên Facebook -->
     <div class="input-container">
-      <label for="fbLink">Nhập Link Facebook của bạn:</label>
-      <input type="text" id="fbLink" placeholder="https://www.facebook.com/username" />
-      <button onclick="fetchFBInfo()">Trích xuất thông tin</button>
+      <label for="userName">Nhập Tên Facebook của bạn:</label>
+      <input type="text" id="userName" placeholder="Tên Facebook" />
+    </div>
+    
+    <div class="input-container">
+      <label for="userId">Nhập ID Facebook của bạn:</label>
+      <input type="text" id="userId" placeholder="ID Facebook" />
     </div>
 
+    <button onclick="startGame()">Bắt đầu</button>
+
+    <!-- Hiển thị thông tin người chơi -->
     <div id="userInfo" class="hidden">
-      <h2 id="userName"></h2>
-      <p>ID Facebook: <span id="userId"></span></p>
+      <h2 id="displayUserName"></h2>
+      <p>ID Facebook: <span id="displayUserId"></span></p>
     </div>
 
     <!-- Quay thưởng -->
@@ -125,12 +132,65 @@
     let stopTime = Math.floor(Math.random() * 1000) + 1000;
     const prizes = ['Giải 1', 'Giải 2', 'Giải 3', 'Giải 4', 'Giải 5', 'Giải 6'];
 
-    // Trích xuất thông tin từ link Facebook
-    async function fetchFBInfo() {
-      const fbLink = document.getElementById('fbLink').value;
-      const username = fbLink.split("facebook.com/")[1];
-      
-      if (username) {
-        // Dùng Facebook Graph API để lấy thông tin (Yêu cầu có token hợp lệ)
-        const accessToken = 'YOUR_FACEBOOK_ACCESS_TOKEN'; // Đặt token tại đây
-        const url = `https://graph.facebook.com/${username}?access
+    // Bắt đầu trò chơi
+    function startGame() {
+      const userName = document.getElementById('userName').value;
+      const userId = document.getElementById('userId').value;
+
+      if (userName && userId) {
+        // Hiển thị thông tin người chơi
+        document.getElementById('displayUserName').innerText = userName;
+        document.getElementById('displayUserId').innerText = userId;
+        document.getElementById('userInfo').classList.remove('hidden');
+        document.getElementById('prizeContainer').classList.remove('hidden');
+        document.getElementById('spinButton').classList.remove('hidden');
+      } else {
+        alert('Vui lòng nhập đầy đủ thông tin!');
+      }
+    }
+
+    // Bắt đầu quay thưởng
+    function startSpin() {
+      if (spinning) return;
+
+      spinning = true;
+      document.getElementById('result').textContent = 'Đang quay...';
+
+      let prizeElements = document.querySelectorAll('.prize');
+      let currentIndex = 0;
+
+      // Di chuyển các phần quà qua lại
+      interval = setInterval(function() {
+        currentIndex = (currentIndex + 1) % prizeElements.length;
+        const prize = prizeElements[currentIndex];
+        
+        // Di chuyển qua lại
+        prize.style.transform = `translateX(${currentIndex * 120 - 240}px)`;
+        
+        // Dừng quay sau một khoảng thời gian ngẫu nhiên
+        if (currentIndex === prizeElements.length - 1) {
+          clearInterval(interval);
+          let randomPrizeIndex = Math.floor(Math.random() * prizes.length);
+          document.getElementById('result').textContent = 'Bạn đã trúng: ' + prizes[randomPrizeIndex];
+          document.getElementById('questionContainer').classList.remove('hidden');
+          spinning = false;
+        }
+      }, 300); // Thời gian mỗi lần di chuyển
+    }
+
+    // Gửi câu trả lời
+    function submitAnswers() {
+      const answer1 = document.getElementById('question1').value;
+      const answer2 = document.getElementById('question2').value;
+      const answer3 = document.getElementById('question3').value;
+
+      if (answer1 && answer2 && answer3) {
+        alert('Cảm ơn bạn đã trả lời xong câu hỏi! Chúc mừng bạn đã nhận thưởng!');
+      } else {
+        alert('Vui lòng trả lời đầy đủ các câu hỏi!');
+      }
+    }
+  </script>
+
+</body>
+</html>
