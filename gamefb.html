@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Quản Lý Nhóm</title>
+  <title>Game Quay Thưởng</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -42,130 +42,148 @@
     button:hover {
       background-color: #45a049;
     }
-    .member-list {
+    .history {
       margin-top: 30px;
-      padding: 10px;
       border-top: 2px solid #ddd;
+      padding-top: 20px;
     }
-    .member-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
+    .history h3 {
+      text-align: center;
     }
-    .task-status {
-      display: flex;
-      gap: 10px;
+    .history table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
     }
-    .task-status button {
-      background-color: #ff9800;
+    .history table, th, td {
+      border: 1px solid #ddd;
     }
-    .task-status button.completed {
-      background-color: #8bc34a;
+    .history th, .history td {
+      padding: 10px;
+      text-align: left;
+    }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>Game Quản Lý Nhóm</h1>
-    <div class="form-group">
-      <input type="text" id="name" placeholder="Nhập tên thành viên" />
-      <input type="text" id="role" placeholder="Nhập vai trò của thành viên" />
-      <button onclick="addMember()">Thêm Thành Viên</button>
-    </div>
+    <h1>Game Quay Thưởng</h1>
 
     <div class="form-group">
-      <input type="text" id="task" placeholder="Nhập nhiệm vụ" />
-      <button onclick="assignTask()">Giao Nhiệm Vụ</button>
+      <input type="text" id="name" placeholder="Nhập tên bạn" />
+      <input type="text" id="phone" placeholder="Nhập số điện thoại" />
+      <button onclick="spinWheel()">Quay Thưởng</button>
     </div>
 
-    <div class="member-list" id="memberList">
-      <h3>Danh sách thành viên</h3>
+    <div id="spinResult" class="hidden">
+      <h2 id="resultText"></h2>
+      <div id="questionSection" class="hidden">
+        <h3>Trả lời 3 câu hỏi sau:</h3>
+        <input type="text" id="question1" placeholder="Câu hỏi 1" />
+        <input type="text" id="question2" placeholder="Câu hỏi 2" />
+        <input type="text" id="question3" placeholder="Câu hỏi 3" />
+        <button onclick="submitAnswers()">Gửi Câu Trả Lời</button>
+      </div>
+    </div>
+
+    <div class="history" id="historySection">
+      <h3>Lịch sử quay thưởng</h3>
+      <table id="historyTable">
+        <tr>
+          <th>Tên</th>
+          <th>SĐT</th>
+          <th>Kết quả</th>
+          <th>Trạng thái trả lời</th>
+        </tr>
+      </table>
     </div>
   </div>
 
   <script>
-    const members = [];
+    const history = [];
 
-    // Hàm thêm thành viên vào nhóm
-    function addMember() {
+    // Hàm quay thưởng
+    function spinWheel() {
       const name = document.getElementById('name').value.trim();
-      const role = document.getElementById('role').value.trim();
+      const phone = document.getElementById('phone').value.trim();
 
-      if (name && role) {
-        members.push({
-          name: name,
-          role: role,
-          tasks: []
-        });
+      if (!name || !phone) {
+        alert('Vui lòng nhập tên và số điện thoại!');
+        return;
+      }
 
-        document.getElementById('name').value = '';
-        document.getElementById('role').value = '';
-        renderMemberList();
+      // Simulate a random prize outcome
+      const isWinner = Math.random() < 0.5; // 50% xác suất trúng thưởng
+      const resultText = document.getElementById('resultText');
+      const questionSection = document.getElementById('questionSection');
+      const spinResult = document.getElementById('spinResult');
+
+      // Hiển thị kết quả quay
+      if (isWinner) {
+        resultText.textContent = `${name}, bạn đã trúng thưởng!`;
+        questionSection.classList.remove('hidden');
       } else {
-        alert('Vui lòng nhập đầy đủ thông tin!');
+        resultText.textContent = `${name}, bạn chưa trúng thưởng. Hãy thử lại sau!`;
+        questionSection.classList.add('hidden');
       }
+
+      // Hiển thị kết quả quay thưởng
+      spinResult.classList.remove('hidden');
     }
 
-    // Hàm giao nhiệm vụ
-    function assignTask() {
-      const task = document.getElementById('task').value.trim();
+    // Hàm gửi câu trả lời
+    function submitAnswers() {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const question1 = document.getElementById('question1').value.trim();
+      const question2 = document.getElementById('question2').value.trim();
+      const question3 = document.getElementById('question3').value.trim();
 
-      if (task && members.length > 0) {
-        const memberName = prompt("Chọn tên thành viên để giao nhiệm vụ:\n" + members.map(member => member.name).join("\n"));
-
-        const member = members.find(m => m.name === memberName);
-
-        if (member) {
-          member.tasks.push({
-            task: task,
-            completed: false
-          });
-
-          document.getElementById('task').value = '';
-          renderMemberList();
-        } else {
-          alert("Tên thành viên không hợp lệ!");
-        }
-      } else {
-        alert('Vui lòng nhập nhiệm vụ và đảm bảo có thành viên trong nhóm!');
+      if (!question1 || !question2 || !question3) {
+        alert('Vui lòng trả lời đầy đủ 3 câu hỏi!');
+        return;
       }
+
+      // Lưu lịch sử quay thưởng
+      const result = `${name} - ${phone} đã trúng thưởng và trả lời câu hỏi: ${question1}, ${question2}, ${question3}`;
+      history.push({ name, phone, result, answered: true });
+
+      // Cập nhật bảng lịch sử
+      updateHistory();
+
+      alert('Cảm ơn bạn đã trả lời câu hỏi!');
+
+      // Ẩn phần câu hỏi và quay lại trang chủ
+      document.getElementById('spinResult').classList.add('hidden');
+      document.getElementById('questionSection').classList.add('hidden');
+      document.getElementById('name').value = '';
+      document.getElementById('phone').value = '';
     }
 
-    // Hàm thay đổi trạng thái nhiệm vụ
-    function toggleTaskStatus(memberName, taskIndex) {
-      const member = members.find(m => m.name === memberName);
-      if (member && member.tasks[taskIndex]) {
-        member.tasks[taskIndex].completed = !member.tasks[taskIndex].completed;
-        renderMemberList();
-      }
-    }
+    // Hàm cập nhật lịch sử quay thưởng
+    function updateHistory() {
+      const historyTable = document.getElementById('historyTable');
+      historyTable.innerHTML = `
+        <tr>
+          <th>Tên</th>
+          <th>SĐT</th>
+          <th>Kết quả</th>
+          <th>Trạng thái trả lời</th>
+        </tr>
+      `;
 
-    // Hàm hiển thị danh sách thành viên và nhiệm vụ
-    function renderMemberList() {
-      const memberListContainer = document.getElementById('memberList');
-      memberListContainer.innerHTML = "<h3>Danh sách thành viên và nhiệm vụ</h3>";
-
-      members.forEach(member => {
-        const memberDiv = document.createElement('div');
-        memberDiv.className = 'member-item';
-
-        const tasks = member.tasks.map((task, index) => {
-          return `
-            <div class="task-status">
-              <span>${task.task}</span>
-              <button onclick="toggleTaskStatus('${member.name}', ${index})" class="${task.completed ? 'completed' : ''}">
-                ${task.completed ? 'Hoàn thành' : 'Chưa hoàn thành'}
-              </button>
-            </div>
-          `;
-        }).join('');
-
-        memberDiv.innerHTML = `
-          <h4>${member.name} - ${member.role}</h4>
-          <div>${tasks}</div>
+      history.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.name}</td>
+          <td>${item.phone}</td>
+          <td>${item.result}</td>
+          <td>${item.answered ? 'Đã trả lời' : 'Chưa trả lời'}</td>
         `;
-        memberListContainer.appendChild(memberDiv);
+        historyTable.appendChild(row);
       });
     }
   </script>
