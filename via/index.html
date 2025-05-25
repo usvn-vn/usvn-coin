@@ -1,1 +1,27 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chuyển đến App VIA.USVN.VN</title>
+  <script>
+    function openApp() {
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      var appUrl = "https://www.appsheet.com/start/227fd7a2-5ab9-4ecb-9c7e-8cd70e10c8a9";
+
+      if (!isMobile) {
+        var width = screen.availWidth;
+        var height = screen.availHeight;
+        var win = window.open(appUrl, "_blank", `width=${width},height=${height},toolbar=no,location=no,status=no,menubar=no`);
+        if (!win) {
+          window.location.href = appUrl; // fallback nếu popup bị chặn
+        }
+      } else {
+        window.location.href = appUrl;
+      }
+    }
+  </script>
+</head>
+<body onload="openApp()">
+  <p>Đang chuyển hướng tới App VIA... Nếu không tự động, <a href="https://www.appsheet.com/start/227fd7a2-5ab9-4ecb-9c7e-8cd70e10c8a9">bấm vào đây</a>.</p>
+</body>
+</html>
