@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="refresh" content="0; url=https://www.appsheet.com/start/227fd7a2-5ab9-4ecb-9c7e-8cd70e10c8a9" />
+  <title>Chuyển hướng AppSheet full màn hình</title>
+  <script>
+    function openFullScreen() {
+      // Lấy kích thước màn hình
+      var width = window.screen.availWidth;
+      var height = window.screen.availHeight;
+      // Mở cửa sổ mới với kích thước full màn hình và không có thanh công cụ
+      var appWindow = window.open("https://www.appsheet.com/start/227fd7a2-5ab9-4ecb-9c7e-8cd70e10c8a9", "_blank",
+        "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=" + width + ",height=" + height);
+      if (!appWindow) {
+        // Nếu trình duyệt chặn popup thì chuyển hướng luôn trên tab hiện tại
+        window.location.href = "https://www.appsheet.com/start/227fd7a2-5ab9-4ecb-9c7e-8cd70e10c8a9";
+      }
+    }
+  </script>
 </head>
-<body>
-  Nếu bạn không được chuyển hướng tự động, <a href="https://www.appsheet.com/start/227fd7a2-5ab9-4ecb-9c7e-8cd70e10c8a9">bấm vào đây</a>.
+<body onload="openFullScreen()">
+  <p>Nếu không tự động chuyển hướng, <a href="https://www.appsheet.com/start/227fd7a2-5ab9-4ecb-9c7e-8cd70e10c8a9">bấm vào đây</a>.</p>
 </body>
 </html>
