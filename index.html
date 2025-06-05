@@ -1,135 +1,120 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Khóa học đào tạo AI trong tài chính và kiếm tiền, giúp bạn tối ưu hóa lợi nhuận, đầu tư thông minh và tạo thu nhập thụ động.">
-    <meta name="keywords" content="AI, tài chính, đầu tư, giao dịch, kiếm tiền, thu nhập thụ động, khóa học AI">
-    <meta name="author" content="AI for Finance">
-    <title>AI for Finance & Money Making</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PH Agency Clone</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #333;
+    }
+    header {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section.hero {
+      background-image: url('https://source.unsplash.com/1600x600/?marketing,agency');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    section.hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    section.hero p {
+      font-size: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    section.services {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    section.services h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .service-item {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PH Agency</h1>
+    <p>Marketing Online Tổng Thể</p>
+  </header>
 
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <nav>
+    <a href="#">Trang chủ</a>
+    <a href="#">Dịch vụ</a>
+    <a href="#">Dự án</a>
+    <a href="#">Liên hệ</a>
+  </nav>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <section class="hero">
+    <h1>Giải pháp Digital Marketing toàn diện</h1>
+    <p>Chúng tôi giúp doanh nghiệp xây dựng thương hiệu và phát triển doanh số qua các kênh online.</p>
+  </section>
 
-    <!-- Open Graph Meta Tags for social media sharing -->
-    <meta property="og:title" content="AI for Finance & Money Making"/>
-    <meta property="og:description" content="Khóa học đào tạo AI trong tài chính và kiếm tiền, giúp bạn tối ưu hóa lợi nhuận, đầu tư thông minh và tạo thu nhập thụ động."/>
-    <meta property="og:image" content="your-image-url.jpg"/>
-    <meta property="og:url" content="https://yourwebsite.com"/>
-
-    <style>
-      body { font-family: 'Inter', sans-serif; }
-    </style>
-  </head>
-  <body class="bg-gray-50 text-gray-800">
-    <!-- Navbar -->
-    <nav class="bg-gray-900 text-white py-4 shadow-md">
-      <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
-        <a href="#" class="text-2xl font-bold">AI for Finance</a>
-        <ul class="flex space-x-6">
-          <li><a href="#services" class="hover:text-green-500">Dịch Vụ</a></li>
-          <li><a href="#courses" class="hover:text-green-500">Khóa Học</a></li>
-          <li><a href="#testimonials" class="hover:text-green-500">Phản Hồi</a></li>
-          <li><a href="#contact" class="hover:text-green-500">Liên Hệ</a></li>
-        </ul>
+  <section class="services">
+    <h2>Dịch vụ của chúng tôi</h2>
+    <div class="service-grid">
+      <div class="service-item">
+        <h3>Thiết kế Website</h3>
+        <p>Website chuyên nghiệp, chuẩn SEO, phù hợp từng ngành nghề.</p>
       </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="bg-gray-900 text-white py-20">
-      <div class="max-w-6xl mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-          Đào tạo AI cho Tài chính và Kiếm tiền<br class="hidden md:block" /> Tăng trưởng bền vững và tối ưu hóa lợi nhuận
-        </h1>
-        <p class="mt-6 text-lg md:text-xl opacity-90">
-          Chúng tôi giúp bạn học cách sử dụng AI để đầu tư thông minh, quản lý tài chính và tạo nguồn thu nhập bền vững
-        </p>
-        <a href="#courses" class="mt-8 inline-block bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition">
-          Khám Phá Khóa Học
-        </a>
+      <div class="service-item">
+        <h3>Quảng cáo Google</h3>
+        <p>Tăng lượng khách hàng tiềm năng với Google Ads.</p>
       </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-gray-100">
-      <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">Dịch Vụ & Khóa Học Của Chúng Tôi</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white shadow-md p-6 rounded-xl text-center">
-            <div class="text-green-500 text-4xl mb-4">📊</div>
-            <h3 class="text-xl font-semibold mb-2">Tư Duy Tài Chính với AI</h3>
-            <p>Học cách áp dụng AI vào các chiến lược tài chính thông minh, đầu tư và quản lý rủi ro.</p>
-          </div>
-          <div class="bg-white shadow-md p-6 rounded-xl text-center">
-            <div class="text-green-500 text-4xl mb-4">🤖</div>
-            <h3 class="text-xl font-semibold mb-2">AI & Trading (Giao Dịch)</h3>
-            <p>Khóa học giao dịch với AI, giúp tối ưu hóa lợi nhuận qua các chiến thuật tự động hóa giao dịch.</p>
-          </div>
-          <div class="bg-white shadow-md p-6 rounded-xl text-center">
-            <div class="text-green-500 text-4xl mb-4">💸</div>
-            <h3 class="text-xl font-semibold mb-2">Xây Dựng Doanh Thu Bền Vững</h3>
-            <p>Học cách sử dụng công cụ AI để tạo ra các nguồn thu nhập thụ động từ các kênh tài chính online.</p>
-          </div>
-        </div>
+      <div class="service-item">
+        <h3>Facebook Ads</h3>
+        <p>Tiếp cận hàng triệu khách hàng trên Facebook, Instagram.</p>
       </div>
-    </section>
-
-    <!-- Course Highlights -->
-    <section id="courses" class="py-20">
-      <div class="max-w-6xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-12">Khóa Học Nổi Bật</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white shadow-md p-6 rounded-xl">
-            <img src="https://media.ftv.com.vn/media/dau-tu-tai-chinh-4%20(1).png" alt="AI Finance" class="w-full h-48 object-cover rounded-t-xl" />
-            <h3 class="text-xl font-semibold mt-4 mb-2">AI cho Đầu Tư Tài Chính</h3>
-            <p>Học cách sử dụng AI trong phân tích và dự đoán thị trường để đưa ra quyết định đầu tư tối ưu.</p>
-            <a href="#register" class="mt-4 inline-block bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition">Đăng ký ngay</a>
-          </div>
-          <div class="bg-white shadow-md p-6 rounded-xl">
-            <img src="https://thefundedtraderprogram.com/wp-content/uploads/2023/12/shutterstock-2137464199_573d7af0f12a8fcc6cf0331d280b8c3d_800.webp" alt="AI Trading" class="w-full h-48 object-cover rounded-t-xl" />
-            <h3 class="text-xl font-semibold mt-4 mb-2">AI trong Giao Dịch Forex & Crypto</h3>
-            <p>Tìm hiểu cách áp dụng AI để tự động giao dịch Forex và Crypto với chiến lược tối ưu.</p>
-            <a href="#register" class="mt-4 inline-block bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition">Đăng ký ngay</a>
-          </div>
-          <div class="bg-white shadow-md p-6 rounded-xl">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO_7lIH8G4AuKSOsjid6xpY7Fl5tcv5WvF6w&s" alt="Passive Income" class="w-full h-48 object-cover rounded-t-xl" />
-            <h3 class="text-xl font-semibold mt-4 mb-2">Xây Dựng Thu Nhập Thụ Động với AI</h3>
-            <p>Khóa học giúp bạn sử dụng AI để tạo ra các nguồn thu nhập thụ động từ các kênh tài chính trực tuyến.</p>
-            <a href="#register" class="mt-4 inline-block bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition">Đăng ký ngay</a>
-          </div>
-        </div>
+      <div class="service-item">
+        <h3>SEO tổng thể</h3>
+        <p>Đưa website lên top Google bền vững và hiệu quả lâu dài.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-900 text-white">
-      <div class="max-w-6xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-8">Liên Hệ Với Chúng Tôi</h2>
-        <p class="text-lg mb-6">Có câu hỏi? Chúng tôi sẵn sàng hỗ trợ bạn. Để lại thông tin, và chúng tôi sẽ phản hồi ngay lập tức!</p>
-        <form action="#" method="POST" class="bg-gray-800 p-6 rounded-xl shadow-lg mx-auto max-w-4xl">
-          <div class="flex flex-col space-y-4">
-            <input type="text" name="name" placeholder="Họ và tên" class="p-3 bg-gray-700 text-white rounded-lg"/>
-            <input type="email" name="email" placeholder="Email" class="p-3 bg-gray-700 text-white rounded-lg"/>
-            <textarea name="message" placeholder="Nội dung" rows="4" class="p-3 bg-gray-700 text-white rounded-lg"></textarea>
-            <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-lg transition">
-              Gửi Tin Nhắn
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
-      <div class="max-w-6xl mx-auto px-4 text-center">
-        <p>&copy; 2025 AI for Finance. Tất cả quyền được bảo lưu.</p>
-      </div>
-    </footer>
-  </body>
+  <footer>
+    &copy; 2025 PH Agency. All rights reserved.
+  </footer>
+</body>
 </html>
