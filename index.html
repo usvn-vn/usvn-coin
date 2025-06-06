@@ -1,10 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hacker Terminal Pro</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #00ff00;
+      font-family: "Courier New", Courier, monospace;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .terminal {
+      flex: 2;
+      padding: 20px;
+      white-space: pre-wrap;
+      overflow-y: auto;
+      font-size: 16px;
+    }
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background-color: #00ff00;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+    .map {
+      flex: 1;
+      background-color: #001100;
+      border-left: 2px solid #00ff00;
+      padding: 10px;
+      color: #00ff00;
+      font-size: 14px;
+    }
+    .network-node {
+      margin: 10px 0;
+      padding: 5px;
+      border: 1px solid #00ff00;
+    }
+    .highlight {
+      color: #ff0000;
+    }
+    canvas {
+      width: 100%;
+      height: 300px;
+      background: #000;
+      margin-top: 10px;
+    }
+  </style>
+</head>
 <body>
-
-  <div style="background-color: #ffcc00; color: #000; padding: 10px; text-align: center; font-weight: bold;">
-    🚧 Website đang được xây dựng. Một số nội dung có thể chưa hoàn chỉnh. Cảm ơn bạn đã ghé thăm! 🚧
+  <div class="terminal" id="terminal">
+    <span class="cursor"></span>
   </div>
 
-  <header>
-    <h1>USVN Coin</h1>
-    <p>Stablecoin Việt Nam đáng tin cậy trên nền tảng Solana</p>
-  </header>
+  <div class="map">
+    <h3>⚡ Network Map</h3>
+    <div class="network-node">🌐 Public Gateway - 45.12.100.1</div>
+    <div class="network-node">🔐 Firewall Layer</div>
+    <div class="network-node highlight">🧠 Mainframe Core - admin-node-vn34.local</div>
+    <div class="network-node">💾 Data Vault - 10.0.0.14</div>
+    <canvas id="canvasMap"></canvas>
+  </div>
+
+  <audio id="typeSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c0fcdd50f0.mp3?filename=keyboard-typing-quick-1-6374.mp3"></audio>
+  <audio id="beepSound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_c7159f5c57.mp3?filename=beep-6-96268.mp3"></audio>
+  <audio id="alarmSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d59d9f8e17.mp3?filename=danger-alarm-5781.mp3"></audio>
+
+  <script>
+    const terminal = document.getElementById("terminal");
+    const cursor = terminal.querySelector(".cursor");
+    const typeSound = document.getElementById("typeSound");
+    const beepSound = document.getElementById("beepSound");
+    const alarmSound = document.getElementById("alarmSound");
+
+    const lines = [
+      "Initializing system access...",
+      "Scanning network nodes...",
+      "→ Detected: admin-node-vn34.local [192.168.0.200]",
+      "→ Firewall bypass initiated...",
+      "→ Bypass successful.",
+      "Gaining root access... [OK]",
+      "┌────[ACCESS GRANTED]────┐",
+      "│ IP: 192.168.0.200       │",
+      "│ Location: 10.77°N, 106.7°E │",
+      "│ Status: Mainframe Root   │",
+      "└────────────────────────┘",
+      "Extracting secure files...",
+      "→ Dumping vault /dev/secure0",
+      "→ 2.1GB extracted successfully.",
+      "Deploying payload: ghost_backdoor_v2.4",
+      "Cleaning up logs...",
+      "Firewall logs wiped.",
+      "Connection terminated.",
+      "Trace removed."
+    ];
+
+    let i = 0;
+    function typeLine() {
+      if (i < lines.length) {
+        cursor.insertAdjacentText("beforebegin", lines[i] + "\n");
+        if (lines[i].includes("ACCESS GRANTED") || lines[i].includes("Root")) {
+          beepSound.play();
+        } else {
+          typeSound.play();
+        }
+        i++;
+        setTimeout(typeLine, 300 + Math.random() * 300);
+      } else {
+        cursor.style.display = "none";
+      }
+    }
+    typeLine();
+
+    // Simple animated canvas map
+    const canvas = document.getElementById("canvasMap");
+    const ctx = canvas.getContext("2d");
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    const nodes = [
+      {x: 50, y: 150},
+      {x: 150, y: 70},
+      {x: 250, y: 120},
+      {x: 200, y: 220},
+    ];
+    let frame = 0;
+
+    function drawNetwork() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = '#00ff00';
+      ctx.lineWidth = 2;
+
+      nodes.forEach((node, index) => {
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 8, 0, Math.PI * 2);
+        ctx.fillStyle = '#00ff00';
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.font = '12px monospace';
+        ctx.fillText('Node ' + (index + 1), node.x + 10, node.y);
+      });
+
+      ctx.beginPath();
+      ctx.moveTo(nodes[0].x, nodes[0].y);
+      for (let j = 1; j < nodes.length; j++) {
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+      }
+      ctx.stroke();
+
+      requestAnimationFrame(drawNetwork);
+    }
+
+    drawNetwork();
+  </script>
+</body>
+</html>
