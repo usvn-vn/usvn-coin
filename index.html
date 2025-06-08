@@ -1,212 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hacker Terminal Pro</title>
+  <meta charset="UTF-8">
+  <title>Trang chủ dịch vụ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
-      background-color: #000;
-      color: #00ff00;
-      font-family: "Courier New", Courier, monospace;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      color: #333;
     }
-    .terminal {
-      flex: 2;
+
+    header {
+      text-align: center;
+      padding: 60px 20px 20px;
+      background: #0077cc;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    .section-title {
+      padding: 0 20px;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 40px;
+      color: #0077cc;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
       padding: 20px;
-      white-space: pre-wrap;
-      overflow-y: auto;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #0077cc;
+    }
+
+    .card p {
       font-size: 16px;
+      line-height: 1.5;
     }
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      background-color: #00ff00;
-      animation: blink 1s infinite;
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #0077cc;
+      color: white;
     }
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
-    }
-    .map {
-      flex: 1;
-      background-color: #001100;
-      border-left: 2px solid #00ff00;
-      padding: 10px;
-      color: #00ff00;
-      font-size: 14px;
-    }
-    .network-node {
-      margin: 10px 0;
-      padding: 5px;
-      border: 1px solid #00ff00;
-    }
-    .highlight {
-      color: #ff0000;
-    }
-    canvas {
-      width: 100%;
-      height: 300px;
-      background: #000;
-      margin-top: 10px;
-    }
-    .progress-container {
-      margin-top: 20px;
-      background-color: #002200;
-      border: 1px solid #00ff00;
-      padding: 10px;
-    }
-    .progress-bar {
-      height: 20px;
-      background-color: #00ff00;
-      width: 0%;
-      transition: width 0.2s;
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .card h2 {
+        font-size: 20px;
+      }
+
+      .card p {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="terminal" id="terminal">
-    <span class="cursor"></span>
-  </div>
 
-  <div class="map">
-    <h3>⚡ Network Map</h3>
-    <div class="network-node">🌐 Public Gateway - 45.12.100.1</div>
-    <div class="network-node">🔐 Firewall Layer</div>
-    <div class="network-node highlight">🧠 Mainframe Core - admin-node-vn34.local</div>
-    <div class="network-node">💾 Data Vault - 10.0.0.14</div>
-    <canvas id="canvasMap"></canvas>
+<header>
+  <h1>Dịch vụ của chúng tôi</h1>
+  <p>Giải pháp số toàn diện cho doanh nghiệp & cá nhân</p>
+</header>
 
-    <div class="progress-container">
-      <div>📤 Uploading File: exploit_toolkit.zip</div>
-      <div class="progress-bar" id="progress1"></div>
-    </div>
-    <div class="progress-container">
-      <div>📤 Uploading File: rootkit_bypass.sys</div>
-      <div class="progress-bar" id="progress2"></div>
-    </div>
-  </div>
+<h2 class="section-title">1. Crypto & Blockchain</h2>
+<section class="services">
+  <div class="card"><h2>Tạo ví tiền điện tử</h2><p>Hỗ trợ tạo ví BTC, ETH, USDT và ví phi tập trung.</p></div>
+  <div class="card"><h2>Tư vấn đầu tư Crypto</h2><p>Chiến lược quản lý vốn, phân tích xu hướng thị trường crypto.</p></div>
+  <div class="card"><h2>Thiết kế website ICO</h2><p>Trang giới thiệu dự án huy động vốn bằng token chuẩn quốc tế.</p></div>
+  <div class="card"><h2>Marketing dự án Blockchain</h2><p>Quảng bá dự án token qua các kênh Telegram, Twitter, Reddit.</p></div>
+  <div class="card"><h2>Xây dựng sàn giao dịch Crypto</h2><p>Hệ thống mua bán coin cơ bản hoặc P2P an toàn, dễ dùng.</p></div>
+  <div class="card"><h2>Phát triển token</h2><p>Tạo smart contract chuẩn ERC20, BEP20, tùy chỉnh tên và số lượng.</p></div>
+  <div class="card"><h2>Audit Smart Contract</h2><p>Kiểm tra mã nguồn token và hợp đồng thông minh để phát hiện lỗi bảo mật.</p></div>
+  <div class="card"><h2>Tạo NFT và bộ sưu tập</h2><p>Thiết kế, triển khai và bán bộ NFT trên các marketplace phổ biến.</p></div>
+  <div class="card"><h2>Quản lý cộng đồng Telegram</h2><p>Setup bot, quản trị viên, minigame và hoạt động cộng đồng.</p></div>
+  <div class="card"><h2>Đào tạo Blockchain</h2><p>Khóa học từ căn bản đến nâng cao, cập nhật công nghệ mới.</p></div>
+</section>
 
-  <audio id="typeSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c0fcdd50f0.mp3?filename=keyboard-typing-quick-1-6374.mp3"></audio>
-  <audio id="beepSound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_c7159f5c57.mp3?filename=beep-6-96268.mp3"></audio>
-  <audio id="alarmSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d59d9f8e17.mp3?filename=danger-alarm-5781.mp3"></audio>
+<h2 class="section-title">2. Marketing Mạng Xã Hội</h2>
+<section class="services">
+  <div class="card"><h2>Quản lý Fanpage Facebook</h2><p>Đăng bài, chăm sóc khách hàng, tăng tương tác tự nhiên.</p></div>
+  <div class="card"><h2>Chạy quảng cáo Facebook/Instagram</h2><p>Setup chiến dịch quảng cáo hiệu quả và đúng mục tiêu.</p></div>
+  <div class="card"><h2>Thiết kế nội dung viral</h2><p>Viết nội dung thu hút, sáng tạo hình ảnh và video.</p></div>
+  <div class="card"><h2>SEO YouTube</h2><p>Tối ưu video YouTube lên top tìm kiếm theo từ khóa.</p></div>
+  <div class="card"><h2>Quảng bá TikTok</h2><p>Chiến lược nội dung, tăng follow và tương tác.</p></div>
+  <div class="card"><h2>Chạy quảng cáo Zalo</h2><p>Tiếp cận khách hàng tiềm năng qua nền tảng Zalo Ads.</p></div>
+  <div class="card"><h2>Thiết kế banner & poster</h2><p>Sáng tạo thiết kế quảng cáo cho mạng xã hội và web.</p></div>
+  <div class="card"><h2>Tăng follow và tương tác</h2><p>Dịch vụ tăng like, comment, follow Facebook/TikTok/Youtube.</p></div>
+  <div class="card"><h2>Xây dựng thương hiệu cá nhân</h2><p>Chiến lược định vị hình ảnh cá nhân chuyên nghiệp trên mạng xã hội.</p></div>
+  <div class="card"><h2>Chăm sóc khách hàng đa kênh</h2><p>Thiết lập chatbot, auto inbox, xử lý tin nhắn nhiều nền tảng.</p></div>
+</section>
 
-  <script>
-    const terminal = document.getElementById("terminal");
-    const cursor = terminal.querySelector(".cursor");
-    const typeSound = document.getElementById("typeSound");
-    const beepSound = document.getElementById("beepSound");
-    const alarmSound = document.getElementById("alarmSound");
+<h2 class="section-title">3. Lập trình & Thiết kế</h2>
+<section class="services">
+  <div class="card"><h2>Thiết kế website doanh nghiệp</h2><p>Giao diện hiện đại, chuẩn SEO, tương thích di động.</p></div>
+  <div class="card"><h2>Lập trình web app theo yêu cầu</h2><p>Xây dựng hệ thống phần mềm web cho quản lý và kinh doanh.</p></div>
+  <div class="card"><h2>Thiết kế landing page bán hàng</h2><p>Landing page chuyển đổi cao, tích hợp biểu mẫu và chatbot.</p></div>
+  <div class="card"><h2>Lập trình ứng dụng di động</h2><p>Ứng dụng Android/iOS cho doanh nghiệp, startup.</p></div>
+  <div class="card"><h2>Thiết kế logo & bộ nhận diện</h2><p>Thương hiệu mạnh mẽ với thiết kế chuyên nghiệp, độc đáo.</p></div>
+  <div class="card"><h2>Chỉnh sửa video chuyên nghiệp</h2><p>Dựng video giới thiệu, quảng cáo, reel, clip review.</p></div>
+  <div class="card"><h2>Thiết kế giao diện UI/UX</h2><p>Thiết kế trải nghiệm người dùng tối ưu cho app/web.</p></div>
+  <div class="card"><h2>Lập trình hệ thống quản lý</h2><p>CRM, quản lý nhân sự, tài chính, khách hàng.</p></div>
+  <div class="card"><h2>Thiết kế catalog/brochure</h2><p>Tài liệu quảng bá chuyên nghiệp cho công ty/sản phẩm.</p></div>
+  <div class="card"><h2>Tối ưu tốc độ website</h2><p>Tăng tốc tải trang, điểm Google PageSpeed cao hơn.</p></div>
+</section>
 
-    const lines = [
-      "Initializing system access...",
-      "Scanning network nodes...",
-      "→ Detected: admin-node-vn34.local [192.168.0.200]",
-      "→ Firewall bypass initiated...",
-      "→ Bypass successful.",
-      "Gaining root access... [OK]",
-      "┌────[ACCESS GRANTED]────┐",
-      "│ IP: 192.168.0.200       │",
-      "│ Location: 10.77°N, 106.7°E │",
-      "│ Status: Mainframe Root   │",
-      "└────────────────────────┘",
-      "Extracting secure files...",
-      "→ Dumping vault /dev/secure0",
-      "→ 2.1GB extracted successfully.",
-      "Deploying payload: ghost_backdoor_v2.4",
-      "Cleaning up logs...",
-      "Firewall logs wiped.",
-      "Connection terminated.",
-      "Trace removed."
-    ];
+<footer>
+  <p>© 2025 Dịch vụ chuyên nghiệp - Liên hệ: 0944.444.563</p>
+</footer>
 
-    let i = 0;
-    function typeLine() {
-      if (i < lines.length) {
-        cursor.insertAdjacentText("beforebegin", lines[i] + "\n");
-        if (lines[i].includes("ACCESS GRANTED") || lines[i].includes("Root")) {
-          beepSound.play();
-        } else {
-          typeSound.play();
-        }
-        i++;
-        setTimeout(typeLine, 300 + Math.random() * 300);
-      } else {
-        cursor.style.display = "none";
-        simulateProgress();
-      }
-    }
-    typeLine();
-
-    // Simulate loading progress bars
-    function simulateProgress() {
-      const p1 = document.getElementById("progress1");
-      const p2 = document.getElementById("progress2");
-      let val1 = 0;
-      let val2 = 0;
-
-      const interval1 = setInterval(() => {
-        val1 += Math.random() * 10;
-        if (val1 >= 100) {
-          val1 = 100;
-          clearInterval(interval1);
-        }
-        p1.style.width = val1 + "%";
-      }, 200);
-
-      setTimeout(() => {
-        const interval2 = setInterval(() => {
-          val2 += Math.random() * 8;
-          if (val2 >= 100) {
-            val2 = 100;
-            clearInterval(interval2);
-          }
-          p2.style.width = val2 + "%";
-        }, 200);
-      }, 3000);
-    }
-
-    // Canvas network animation
-    const canvas = document.getElementById("canvasMap");
-    const ctx = canvas.getContext("2d");
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-
-    const nodes = [
-      {x: 50, y: 150},
-      {x: 150, y: 70},
-      {x: 250, y: 120},
-      {x: 200, y: 220},
-    ];
-
-    function drawNetwork() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.strokeStyle = '#00ff00';
-      ctx.lineWidth = 2;
-
-      nodes.forEach((node, index) => {
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, 8, 0, Math.PI * 2);
-        ctx.fillStyle = '#00ff00';
-        ctx.fill();
-        ctx.stroke();
-        ctx.font = '12px monospace';
-        ctx.fillText('Node ' + (index + 1), node.x + 10, node.y);
-      });
-
-      ctx.beginPath();
-      ctx.moveTo(nodes[0].x, nodes[0].y);
-      for (let j = 1; j < nodes.length; j++) {
-        ctx.lineTo(nodes[j].x, nodes[j].y);
-      }
-      ctx.stroke();
-
-      requestAnimationFrame(drawNetwork);
-    }
-    drawNetwork();
-  </script>
 </body>
 </html>
