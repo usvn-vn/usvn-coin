@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Font Chuyển Đổi đăng Facebook</title>
+<title>Chuyển đổi font giữ format xuống dòng - Usvn.vn</title>
 <style>
   body {
     font-family: Arial, sans-serif;
-    max-width: 720px;
-    margin: 30px auto;
-    background: #fafafa;
+    max-width: 900px;
+    margin: 30px auto 60px;
+    background: #fff;
     color: #222;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
   h1 {
     text-align: center;
@@ -18,7 +21,7 @@
   }
   textarea {
     width: 100%;
-    height: 90px;
+    height: 120px;
     font-size: 18px;
     padding: 12px;
     border: 1px solid #ccc;
@@ -26,37 +29,51 @@
     resize: vertical;
     margin-bottom: 15px;
   }
-  label {
-    user-select: none;
-    margin-right: 15px;
-    font-weight: 600;
-  }
   .options {
     margin-bottom: 20px;
-  }
-  .result-list {
-    border-top: 1px solid #ddd;
-  }
-  .result-item {
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #ddd;
-    padding: 10px 5px;
   }
-  .result-text {
+  .options label {
+    user-select: none;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .font-count {
+    margin-left: auto;
+  }
+  .font-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+    gap: 14px;
+  }
+  .font-box {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #f9f9f9;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+    min-height: 100px;
+  }
+  .font-text {
     flex: 1;
     font-size: 18px;
-    word-break: break-word;
+    white-space: pre-wrap;
     user-select: text;
-    margin-right: 12px;
+    margin-bottom: 10px;
   }
   button.copy-btn {
+    align-self: flex-end;
     background: #1e88e5;
     border: none;
     color: white;
-    padding: 6px 14px;
-    border-radius: 4px;
+    padding: 6px 12px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
     flex-shrink: 0;
@@ -65,21 +82,61 @@
   button.copy-btn:hover {
     background-color: #1565c0;
   }
+  footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 14px 10px;
+    background: #f0f0f0;
+    font-size: 14px;
+    color: #555;
+    border-top: 1px solid #ccc;
+  }
+  #homeBtn {
+    margin-top: 10px;
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  #homeBtn:hover {
+    background-color: #1565c0;
+  }
 </style>
 </head>
 <body>
 
-<h1>Font Chuyển Đổi đăng Facebook</h1>
+<h1>Chuyển đổi font đăng facebook, mạng xã hội.</h1>
 
-<textarea id="inputText" placeholder="Nhập nội dung cần chuyển đổi..."></textarea>
+<textarea id="inputText" placeholder="Nhập nội dung cần chuyển đổi, có thể xuống dòng..."></textarea>
 
 <div class="options">
   <label><input type="checkbox" id="boldCheck" /> In đậm</label>
   <label><input type="checkbox" id="italicCheck" /> Nghiêng</label>
   <label><input type="checkbox" id="iconCheck" /> Chèn icon mặt cười</label>
+
+  <label class="font-count">Số font hiển thị:
+    <select id="fontCountSelect">
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20" selected>20</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
+      <option value="40">40</option>
+      <option value="50">50</option>
+    </select>
+  </label>
 </div>
 
-<div class="result-list" id="resultList"></div>
+<div class="font-grid" id="resultGrid"></div>
+
+<footer>
+  © Usvn.vn
+  <br />
+  <button id="homeBtn" onclick="window.location.href='https://usvn.vn'">Trở về trang chủ</button>
+</footer>
 
 <script>
   const fonts = [
@@ -92,45 +149,69 @@
     {name:"Comic Sans MS", css:"'Comic Sans MS', cursive, sans-serif"},
     {name:"Impact", css:"Impact, sans-serif"},
     {name:"Lucida Console", css:"'Lucida Console', monospace"},
-    {name:"Trebuchet MS", css:"'Trebuchet MS', sans-serif"}
+    {name:"Trebuchet MS", css:"'Trebuchet MS', sans-serif"},
+    {name:"Palatino Linotype", css:"'Palatino Linotype', serif"},
+    {name:"Gill Sans", css:"'Gill Sans', sans-serif"},
+    {name:"Franklin Gothic Medium", css:"'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"},
+    {name:"Brush Script MT", css:"'Brush Script MT', cursive"},
+    {name:"Century Gothic", css:"'Century Gothic', sans-serif"},
+    {name:"Calibri", css:"Calibri, sans-serif"},
+    {name:"Candara", css:"Candara, sans-serif"},
+    {name:"Copperplate", css:"Copperplate, 'Copperplate Gothic Light', fantasy"},
+    {name:"Optima", css:"Optima, sans-serif"},
+    {name:"Segoe UI", css:"'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"}
   ];
 
   const icons = ['😊', '😂', '😍', '🔥', '👍', '🙌', '😉', '🥰', '🎉', '😎'];
 
-  function insertRandomIcon(text) {
+  // Chèn icon ngẫu nhiên vào các dòng văn bản (khoảng 1 icon mỗi 2 dòng)
+  function insertRandomIconsMultiLines(text) {
     if (!text) return "";
-    const icon = icons[Math.floor(Math.random() * icons.length)];
-    const mid = Math.floor(text.length / 2);
-    return text.slice(0, mid) + icon + text.slice(mid);
+    const lines = text.split('\n');
+    let newLines = lines.map(line => line);
+    for(let i=0; i < lines.length; i+=2) {
+      // Chèn icon vào giữa dòng thứ i nếu có
+      if(lines[i].length > 0) {
+        const icon = icons[Math.floor(Math.random() * icons.length)];
+        const mid = Math.floor(lines[i].length / 2);
+        newLines[i] = lines[i].slice(0, mid) + icon + lines[i].slice(mid);
+      }
+    }
+    return newLines.join('\n');
   }
 
   function styleText(text, bold, italic, icon) {
     let result = text;
-    if(icon) result = insertRandomIcon(result);
-    if(bold) result = result.toUpperCase(); // giả định in đậm bằng chữ hoa (vì font in đậm css sẽ áp dụng khi hiển thị)
-    // in nghiêng sẽ áp dụng CSS
+    if(icon) result = insertRandomIconsMultiLines(result);
+    if(bold) result = result.toUpperCase();
     return result;
   }
 
-  function renderResults() {
-    const inputText = document.getElementById("inputText").value.trim();
+  function renderFonts() {
+    const inputText = document.getElementById("inputText").value;
     const bold = document.getElementById("boldCheck").checked;
     const italic = document.getElementById("italicCheck").checked;
     const icon = document.getElementById("iconCheck").checked;
-    const container = document.getElementById("resultList");
-    container.innerHTML = '';
+    const fontCount = parseInt(document.getElementById("fontCountSelect").value) || 20;
 
-    if (!inputText) {
-      container.innerHTML = '<i>Vui lòng nhập nội dung.</i>';
+    const container = document.getElementById("resultGrid");
+    container.innerHTML = "";
+
+    if(!inputText.trim()) {
+      container.innerHTML = "<i>Vui lòng nhập nội dung.</i>";
       return;
     }
 
-    fonts.forEach(({name, css}) => {
-      const div = document.createElement("div");
-      div.className = "result-item";
+    const count = Math.min(fontCount, fonts.length);
 
-      const span = document.createElement("span");
-      span.className = "result-text";
+    for(let i=0; i<count; i++) {
+      const {name, css} = fonts[i];
+
+      const box = document.createElement("div");
+      box.className = "font-box";
+
+      const span = document.createElement("pre");
+      span.className = "font-text";
       span.textContent = styleText(inputText, bold, italic, icon);
       span.style.fontFamily = css;
       span.style.fontWeight = bold ? "bold" : "normal";
@@ -139,28 +220,29 @@
       const btnCopy = document.createElement("button");
       btnCopy.className = "copy-btn";
       btnCopy.textContent = "Sao chép";
-      btnCopy.onclick = () => {
+      btnCopy.title = `Sao chép đoạn text font "${name}"`;
+      btnCopy.addEventListener("click", () => {
         navigator.clipboard.writeText(span.textContent).then(() => {
-          btnCopy.textContent = "Đã sao chép";
+          btnCopy.textContent = "Đã sao chép!";
           setTimeout(() => btnCopy.textContent = "Sao chép", 1500);
         });
-      };
+      });
 
-      div.appendChild(span);
-      div.appendChild(btnCopy);
-      container.appendChild(div);
-    });
+      box.appendChild(span);
+      box.appendChild(btnCopy);
+
+      container.appendChild(box);
+    }
   }
 
-  // Render ngay khi gõ
-  document.getElementById("inputText").addEventListener("input", renderResults);
-  document.getElementById("boldCheck").addEventListener("change", renderResults);
-  document.getElementById("italicCheck").addEventListener("change", renderResults);
-  document.getElementById("iconCheck").addEventListener("change", renderResults);
+  document.getElementById("inputText").addEventListener("input", renderFonts);
+  document.getElementById("boldCheck").addEventListener("change", renderFonts);
+  document.getElementById("italicCheck").addEventListener("change", renderFonts);
+  document.getElementById("iconCheck").addEventListener("change", renderFonts);
+  document.getElementById("fontCountSelect").addEventListener("change", renderFonts);
 
-  // Render ban đầu (rỗng)
-  renderResults();
+  renderFonts();
 </script>
-<h1>Thiết kế bởi Hoàng Tuấn Anh ( USVN.VN )</h1>
+
 </body>
 </html>
