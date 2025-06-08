@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Font Chuyển Đổi Giống Yaytext</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 720px;
+    margin: 30px auto;
+    background: #fafafa;
+    color: #222;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  textarea {
+    width: 100%;
+    height: 90px;
+    font-size: 18px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    margin-bottom: 15px;
+  }
+  label {
+    user-select: none;
+    margin-right: 15px;
+    font-weight: 600;
+  }
+  .options {
+    margin-bottom: 20px;
+  }
+  .result-list {
+    border-top: 1px solid #ddd;
+  }
+  .result-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 5px;
+  }
+  .result-text {
+    flex: 1;
+    font-size: 18px;
+    word-break: break-word;
+    user-select: text;
+    margin-right: 12px;
+  }
+  button.copy-btn {
+    background: #1e88e5;
+    border: none;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    flex-shrink: 0;
+    transition: background-color 0.3s;
+  }
+  button.copy-btn:hover {
+    background-color: #1565c0;
+  }
+</style>
+</head>
+<body>
+
+<h1>Font Chuyển Đổi Giống Yaytext</h1>
+
+<textarea id="inputText" placeholder="Nhập nội dung cần chuyển đổi..."></textarea>
+
+<div class="options">
+  <label><input type="checkbox" id="boldCheck" /> In đậm</label>
+  <label><input type="checkbox" id="italicCheck" /> Nghiêng</label>
+  <label><input type="checkbox" id="iconCheck" /> Chèn icon mặt cười</label>
+</div>
+
+<div class="result-list" id="resultList"></div>
+
+<script>
+  const fonts = [
+    {name:"Arial", css:"Arial, sans-serif"},
+    {name:"Times New Roman", css:"'Times New Roman', serif"},
+    {name:"Courier New", css:"'Courier New', monospace"},
+    {name:"Verdana", css:"Verdana, sans-serif"},
+    {name:"Georgia", css:"Georgia, serif"},
+    {name:"Tahoma", css:"Tahoma, sans-serif"},
+    {name:"Comic Sans MS", css:"'Comic Sans MS', cursive, sans-serif"},
+    {name:"Impact", css:"Impact, sans-serif"},
+    {name:"Lucida Console", css:"'Lucida Console', monospace"},
+    {name:"Trebuchet MS", css:"'Trebuchet MS', sans-serif"}
+  ];
+
+  const icons = ['😊', '😂', '😍', '🔥', '👍', '🙌', '😉', '🥰', '🎉', '😎'];
+
+  function insertRandomIcon(text) {
+    if (!text) return "";
+    const icon = icons[Math.floor(Math.random() * icons.length)];
+    const mid = Math.floor(text.length / 2);
+    return text.slice(0, mid) + icon + text.slice(mid);
+  }
+
+  function styleText(text, bold, italic, icon) {
+    let result = text;
+    if(icon) result = insertRandomIcon(result);
+    if(bold) result = result.toUpperCase(); // giả định in đậm bằng chữ hoa (vì font in đậm css sẽ áp dụng khi hiển thị)
+    // in nghiêng sẽ áp dụng CSS
+    return result;
+  }
+
+  function renderResults() {
+    const inputText = document.getElementById("inputText").value.trim();
+    const bold = document.getElementById("boldCheck").checked;
+    const italic = document.getElementById("italicCheck").checked;
+    const icon = document.getElementById("iconCheck").checked;
+    const container = document.getElementById("resultList");
+    container.innerHTML = '';
+
+    if (!inputText) {
+      container.innerHTML = '<i>Vui lòng nhập nội dung.</i>';
+      return;
+    }
+
+    fonts.forEach(({name, css}) => {
+      const div = document.createElement("div");
+      div.className = "result-item";
+
+      const span = document.createElement("span");
+      span.className = "result-text";
+      span.textContent = styleText(inputText, bold, italic, icon);
+      span.style.fontFamily = css;
+      span.style.fontWeight = bold ? "bold" : "normal";
+      span.style.fontStyle = italic ? "italic" : "normal";
+
+      const btnCopy = document.createElement("button");
+      btnCopy.className = "copy-btn";
+      btnCopy.textContent = "Sao chép";
+      btnCopy.onclick = () => {
+        navigator.clipboard.writeText(span.textContent).then(() => {
+          btnCopy.textContent = "Đã sao chép";
+          setTimeout(() => btnCopy.textContent = "Sao chép", 1500);
+        });
+      };
+
+      div.appendChild(span);
+      div.appendChild(btnCopy);
+      container.appendChild(div);
+    });
+  }
+
+  // Render ngay khi gõ
+  document.getElementById("inputText").addEventListener("input", renderResults);
+  document.getElementById("boldCheck").addEventListener("change", renderResults);
+  document.getElementById("italicCheck").addEventListener("change", renderResults);
+  document.getElementById("iconCheck").addEventListener("change", renderResults);
+
+  // Render ban đầu (rỗng)
+  renderResults();
+</script>
+
+</body>
+</html>
